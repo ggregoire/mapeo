@@ -1,14 +1,15 @@
 function allowRendering () {
 	Meteor.autorun( function() {
 		var selectedMap = Session.get("selectedMap");
-		displayMap();
-	});
+		console.log("je pense que selecteMap a change : " + Session.get("selectedMap"))
+		
+		var currentMap = Maps.findOne(selectedMap,{reactive:false});
+		displayMap(currentMap);
+	});	
 }
 
-function displayMap () {
+function displayMap (currentMap) {
 
-	var currentMap = Maps.findOne(Session.get("selectedMap"),{reactive:false});
-	var lol = Maps.findOne(Session.get("selectedMap"), {fields: {'points':1}});
 	var mapOptions = {
 	    zoom: currentMap.zoom,
 	    center: new google.maps.LatLng(currentMap.centerLat,currentMap.centerLng),
@@ -36,20 +37,8 @@ function displayMap () {
   	GLO_MAP =  new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   	initiateDrawing();
 
-  	_.each(currentMap.points, function(pt) {
-  		displayPoint(pt);
-  	});
-  	applyFilter();
+  	applyFilter(currentMap.filter);
 }
-
-/*
-	Maps.findOne(Session.get("selectedMap"), {fields: {'points':1}}).observe({
-		added: function (point, index) {
-			displayPoint(point, true);
-			l("le added a updaté la carte");
-		}
-	});
-*/
 
 function initiateDrawing () {
 	var drawingManager = new google.maps.drawing.DrawingManager({
@@ -85,7 +74,7 @@ function initiateDrawing () {
 	  		case google.maps.drawing.OverlayType.MARKER:
 	  			var newPoint = point(event.overlay.getPosition().$a,event.overlay.getPosition().ab, 'test', event.overlay.getIcon());
 	  			console.log(newPoint);
-	  			Maps.update(Session.get("selectedMap"), {$push:{"points": newPoint}});
+	  			Points.insert(newPoint);
 				//TODO c'est un test
 	  			//var pt = displayPoint(newPoint, true);
 	  		break;
@@ -103,7 +92,19 @@ function initiateDrawing () {
 	});
 }
 
+function displayPoints (){
 
+	var handle = Points.find({idMap:Session.get("selectedMap")}).observe({
+		added : function(pt,id){
+			displayPoint(pt);
+		},
+		removed:function(pt,id){
+			removePoint(pt);
+		}
+	})
+
+
+}
 
 
 
@@ -117,6 +118,10 @@ function displayPoint (point, editable) {
       //image: point.image
   });
   return gpt;
+}
+
+function removePoint(point){
+	a("removed Point ?")
 }
 
 function displayLine (line, editable) {

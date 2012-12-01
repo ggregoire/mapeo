@@ -6,6 +6,7 @@ Meteor.startup(function () {
 	    handle.stop();
 	    Session.set("selectedMap", Maps.findOne()._id);
 	    allowRendering();
+	    displayPoints();
 	});
 });
 
