@@ -12,7 +12,7 @@ function point (latlng, title, image) {
 		if(image==null) {
 			image = 'glyphicons-halflings.png';
 		}
-		var pt = '{latlng:' + latlng + ', title:' + title + ', image:' + image + '}';
+		var pt = {latlng: latlng, title:title , image: image};
 		console.log(pt);
 	return pt;
 

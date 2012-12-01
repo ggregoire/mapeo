@@ -29,6 +29,9 @@ function initiateMap () {
   	GLO_MAP =  new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   	initiateDrawing();
 
+  	for(var pt in currentMap.points) {
+  		displayPoint(pt);
+  	}
 }
 
 
@@ -68,7 +71,7 @@ function initiateDrawing () {
   			var newPoint = point(event.overlay.getPosition(), 'test', event.overlay.getIcon());
   			Maps.update(Session.get("selectedMap"), {$push:{"points": newPoint}});
 			//TODO c'est un test
-  			displayPoint(newPoint, true);
+  			var pt = displayPoint(newPoint, true);
   		break;
   		case google.maps.drawing.OverlayType.POLYGON:
 
@@ -91,13 +94,14 @@ function initiateDrawing () {
 function displayPoint (point, editable) {
 
 	console.log(point);
-  return google.maps.Marker({
+  var gpt = new google.maps.Marker({
       position: point.latlng,
-      map: GLO_MAP,
-      title: point.title,
-      draggable: editable
+      //map: GLO_MAP,
+      title: point.title
+      //draggable: editable
       //image: point.image
   });
+  return gpt;
 }
 
 function displayLine (line, editable) {
