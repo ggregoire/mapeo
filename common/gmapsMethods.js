@@ -1,16 +1,14 @@
-function reinitiateMap () {
+function allowRendering () {
 	Meteor.autorun( function() {
-		l('initiateMap');
 		var selectedMap = Session.get("selectedMap");
-		l(selectedMap);
-		initiateMap(selectedMap);
-		});
+		displayMap();
+	});
 }
 
-function initiateMap (selectedMap) {
-	l(selectedMap)
-	var currentMap = Maps.findOne(selectedMap);
-	console.log(currentMap);
+function displayMap () {
+
+	var currentMap = Maps.findOne(Session.get("selectedMap"),{reactive:false});
+	var lol = Maps.findOne(Session.get("selectedMap"), {fields: {'points':1}});
 	var mapOptions = {
 	    zoom: 4,
 	    center: new google.maps.LatLng(-25.363882,131.044922),
@@ -37,12 +35,22 @@ function initiateMap (selectedMap) {
   	}
   	GLO_MAP =  new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   	initiateDrawing();
-  	l('on charge les points');
+
   	_.each(currentMap.points, function(pt) {
   		displayPoint(pt);
   	});
-}
 
+/*
+	Maps.findOne(Session.get("selectedMap"), {fields: {'points':1}}).observe({
+		added: function (point, index) {
+			displayPoint(point, true);
+			l("le added a updaté la carte");
+		}
+	});
+*/
+
+
+}
 
 
 function initiateDrawing () {
@@ -75,26 +83,26 @@ function initiateDrawing () {
 
 
 	google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
-  	switch (event.type) {
-  		case google.maps.drawing.OverlayType.MARKER:
-  			var newPoint = point(event.overlay.getPosition().$a,event.overlay.getPosition().ab, 'test', event.overlay.getIcon());
-  			console.log(newPoint);
-  			Maps.update(Session.get("selectedMap"), {$push:{"points": newPoint}});
-			//TODO c'est un test
-  			//var pt = displayPoint(newPoint, true);
-  		break;
-  		case google.maps.drawing.OverlayType.POLYGON:
+	  	switch (event.type) {
+	  		case google.maps.drawing.OverlayType.MARKER:
+	  			var newPoint = point(event.overlay.getPosition().$a,event.overlay.getPosition().ab, 'test', event.overlay.getIcon());
+	  			console.log(newPoint);
+	  			Maps.update(Session.get("selectedMap"), {$push:{"points": newPoint}});
+				//TODO c'est un test
+	  			//var pt = displayPoint(newPoint, true);
+	  		break;
+	  		case google.maps.drawing.OverlayType.POLYGON:
 
-  		break;
-  		case google.maps.drawing.OverlayType.POLYLINE:
+	  		break;
+	  		case google.maps.drawing.OverlayType.POLYLINE:
 
-  		break;
-  		case google.maps.drawing.OverlayType.RECTANGLE:
+	  		break;
+	  		case google.maps.drawing.OverlayType.RECTANGLE:
 
-  		break;
-  	} 
-  	
-});
+	  		break;
+	  	} 
+	  	
+	});
 }
 
 
@@ -103,7 +111,6 @@ function initiateDrawing () {
 
 function displayPoint (point, editable) {
 
-	console.log(point);
   var gpt = new google.maps.Marker({
       position: new google.maps.LatLng(point.lat,point.lng),
       map: GLO_MAP,
