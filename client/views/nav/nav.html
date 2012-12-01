@@ -3,13 +3,16 @@
       <div class="navbar-inner">
         <div class="container-fluid">
           <a class="brand" href="#">Mapeo</a>
-            <p class="navbar-text pull-right">
-              {{loginButtons}}
-            </p>
             <ul class="nav">
               <li >{{>searchMaps}}</li>
               <li ><a href="#">{{>mapCreation}}</a></li>
             </ul>
+            <ul class="nav pull-right">
+              <li class="navbar-text">{{loginButtons}}</li>
+              <li class="divider-vertical"></li>
+              <li class="navbar-text">Config</li>
+            </ul>
+            {{>popup-config-map}}
         </div>
       </div>
     </div>
