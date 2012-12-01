@@ -102,13 +102,30 @@ function displayPoint (point, editable) {
 
 function displayLine (line, editable) {
 
-	  poly = new google.maps.Polyline({
-		strokeColor: line.color,
-	    strokeOpacity: line.opacity,
-	    strokeWeight: line.weight,
-	    editable: editable
-	  });
-	  poly.setMap(GLO_MAP);
-	  return poly;
-}
+    var path = [];
+    var points = line.points;
+
+    if (points.length){
+      if (points[0][0] === undefined){
+        path = points;
+      }
+      else {
+        for (var i=0, latlng; latlng=points[i]; i++){
+          path.push(new google.maps.LatLng(latlng[0], latlng[1]));
+        }
+      }
+    }
+
+    var polyline_options = {
+      map: GLO_MAP,
+      path: path,
+      strokeColor: line.strokeColor,
+      strokeOpacity: line.strokeOpacity,
+      strokeWeight: line.strokeWeight,
+      editable: editable,
+      visible: true
+    };
+
+    return new google.maps.Polyline(polyline_options);
+};
 

@@ -7,7 +7,8 @@ Accounts.onCreateUser(function (options, user) {
     }
 
     if (!user.profile.name) {
-    	user.profile.name = user.username;
+    	//user.profile.name = 'Xavier Campenon'
+    	//user.profile.photo = 'img/xavier.png'
     }
 
 	// if this is the first user ever, make them a God
@@ -16,4 +17,8 @@ Accounts.onCreateUser(function (options, user) {
 	}
 
 	return user;
+});
+
+Meteor.publish('users', function () {
+	return Meteor.users.find();
 });
