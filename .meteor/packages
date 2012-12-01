@@ -9,3 +9,7 @@ preserve-inputs
 underscore
 accounts-password
 accounts-ui
+accounts-facebook
+accounts-github
+accounts-google
+accounts-twitter
