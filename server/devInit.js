@@ -1,7 +1,7 @@
 
   Meteor.startup(function () {
     if (Maps.find().count() <= 1) {
-      Maps.insert(map('title', 'desc', null, null, null, null, null, null, null, null, null, null, null, null));
+      Maps.insert(map('title', 'desc', null, [], null, null, null, null, null, null, null, 13, 48.86039473595898, 2.338371401855511));
     }
     if (Filters.find().count() === 0) {
       Filters.insert({name: "devFilter"});
