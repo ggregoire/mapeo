@@ -10,13 +10,20 @@ Meteor.startup(function () {
 
 	var $userSearch = $('#user-search');
 
-	var users = Meteor.users.find().fetch();
+	var users = Meteor.users.find({}).collection.docs;
+	var usersForTypeahead = [];
 
-	l(users);
+	$.each(users, function (i, user) {
+		usersForTypeahead.push({
+			id: user._id,
+			name: user.profile.name,
+			img: user.profile.img
+		});
+	});
 
 	$userSearch.typeahead({
-		source: users,
-		tmpl: _.template('<li id="<%= _id %>"><img src="<%= profile.photo %>" width="32" height="32" /><a href="#"><%= profile.name %></a></li>')
+		source: usersForTypeahead,
+		tmpl: _.template('<li id="<%= id %>"><img src="<%= img %>" width="32" height="32" /><a href="#"><%= name %></a></li>')
 	});
 
 });
