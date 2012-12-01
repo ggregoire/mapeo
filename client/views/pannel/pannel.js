@@ -1,11 +1,16 @@
+
+Template.pannel.helpers({
+	map: function () {
+		return Maps.findOne(Session.get('selectedMap'));
+	}
+});
+
 Template.pannel.title = function () {
-	return "ceci est le titre de ma map"
-  //return Session.get("Map").title;
+	return this.title;
 };
 
 Template.pannel.description = function () {
-	return "ceci est la description de ma map . Elle est très longue, et hyper intéressante"
-  //return Session.get("Map").description;
+	return this.desc;
 };
 
 Template.pannel.comments = function () {

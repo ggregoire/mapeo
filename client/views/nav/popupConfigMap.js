@@ -1,3 +1,17 @@
+Template.popupConfigMap.helpers({
+	map: function () {
+		return Maps.findOne(Session.get('selectedMap'));
+	}
+});
+
+Template.popupConfigMap.title = function () {
+	return this.title;
+};
+
+Template.popupConfigMap.description = function () {
+	return this.desc;
+};
+
 Meteor.startup(function () {
 
 	$(':radio').prettyCheckable({
