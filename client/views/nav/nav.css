@@ -7,6 +7,9 @@
 {
 	margin-bottom: 0px;
 }
+.navbar-inner{
+	min-width: 600px;	
+}
 
 #popup-config-map {
 	position: absolute;
