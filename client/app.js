@@ -26,19 +26,23 @@ Meteor.startup(function () {
   	/*Meteor.autosubscribe(function () {
   		Meteor.subscribe("Map", {room: Session.get("current-room")});
 	});*/
-
+	/*
   	//TODO gérer les maps création etc
   	Session.set("MapID", 0);
   	
-  	// return array of my messages
+  
+	// create a new map
+	Maps.insert({id: 0, title: "test2", points: [{}]});
+
+	// return array of my maps
 	var myMaps = Maps.find({userId: Session.get('myUserId')}).fetch();
+	
+	// display my first map
+	displayPoint(myMaps[0].points[0], true);
 
-	// create a new message
-	Messages.insert({text: "Hello, world!"});
 
-	// mark my first message as "important"
-	Messages.update(myMessages[0].id, {$set: {important: true}});
-
+	//Messages.update(myMaps[0].id, {$set: {important: true}});
+*/
 
   });
 });

@@ -1,4 +1,4 @@
-function initiateMap () {
+function initiateMap (mapCol) {
 	var mapOptions = {
 	    zoom: 4,
 	    center: new google.maps.LatLng(-25.363882,131.044922),
@@ -23,7 +23,9 @@ function initiateMap () {
 	        position: google.maps.ControlPosition.RIGHT_BOTTOM
 	    }
   	}
-  	return new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+  	var Gmap = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+  	
 }
 
 
@@ -42,16 +44,16 @@ function initiateDrawing () {
 	    ]
 	  },
 	  markerOptions: {
-	     //TODO : récupérer les options
+	     draggable: true
 	  },
 	  polygonOptions: {
-
+	  	editable: true
 	  },
 	  polylineOptions: {
-
+	  	editable: true
 	  },
 	  rectangleOptions: {
-
+	  	editable: true
 	  }
 	});
 	drawingManager.setMap(GLO_MAP);
@@ -60,9 +62,9 @@ function initiateDrawing () {
 	google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
   	switch (event.type) {
   		case google.maps.drawing.OverlayType.MARKER:
-  			Maps.update(Maps[Session.get("MapID")].id, {point: {latlng: event.overlay.getPosition(), title: 'test', image: event.overlay.getIcon()}});
+  			Maps.update(Maps[Session.get("MapID")].id, {points: [{latlng: event.overlay.getPosition(), title: 'test', image: event.overlay.getIcon()}]});
 			//TODO c'est un test
-  			displayPoint(Maps[Session.get("MapID")].point);
+  			displayPoint(Maps[Session.get("MapID")].points[0], true);
   		break;
   		case google.maps.drawing.OverlayType.POLYGON:
 
