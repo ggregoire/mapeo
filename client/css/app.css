@@ -12,10 +12,6 @@ body
 	overflow: hidden;
 }
 
-.input-append {
-	margin: 20px;
-}
-
 .typeahead img {
 	display: inline-block;
 	margin-left: 6px;
