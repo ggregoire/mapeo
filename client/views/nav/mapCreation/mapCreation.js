@@ -11,5 +11,10 @@ Template.mapCreation.events({
 		}else{
 			$(".showMeIfNotEmpty").hide();			
 		}
+	},
+	'click .btnCreateMap':function(){
+		Session.set('selectedMap', Maps.insert(map(($("input.newMapTitle").val(), null, [], [], [], [], false, false, [], Meteor.userId))));
+	$("input.newMapTitle").val("");
+	$("#creationBox").hide();
 	}
 })
