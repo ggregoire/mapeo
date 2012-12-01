@@ -1,3 +1,16 @@
 <template name="mapCreation">
-  Create A Map
+	<a class="clickMe" href="#">Create A Map</a>
+    {{> creationBox}}
+</template>
+
+<template name="creationBox">
+	<div id="creationBox" style="display:none;">
+		<div class="creationForm well">
+			<div class="myFormContainer" style="text-align:center;">
+	    		<input class="newMapTitle"type="text" placeholder="Map Title">
+	    		<br/>
+	  			<button class="btn btn-large showMeIfNotEmpty" type="button" style="display:none;">Create a new Map</button>
+	  		</div>
+		</div>
+	</div>
 </template>

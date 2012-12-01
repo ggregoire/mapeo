@@ -1,0 +1,20 @@
+#creationBox{
+	z-index:999999;
+	position:fixed;
+	min-height:100%;
+	min-width:100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	left:0;
+	transition: all 0.5s;
+	-moz-transition: all 0.5s; /* Firefox 4 */
+	-webkit-transition: all 0.5s; /* Safari and Chrome */
+	-o-transition: all 0.5s; /* Opera */
+}
+.creationForm{
+	opacity: 1;
+	margin-top:80px;
+	max-width: 500px;
+	margin-right:auto;
+	margin-left:auto;
+	vertical-align: middle;	
+}
