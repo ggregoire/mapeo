@@ -1,4 +1,12 @@
+
 Meteor.startup(function () {
+  Meteor.autorun(function () {
+    if (! Session.get("selected")) {
+      var map = Maps.findOne();
+      if (map)
+        Session.set("selected", map._id);
+    }
+
 	var $userSearch = $('#user-search');
 
 	$userSearch.typeahead({
@@ -11,12 +19,6 @@ Meteor.startup(function () {
 	});
 
 
-	var mapOptions = {
-    zoom: 4,
-    center: new google.maps.LatLng(-25.363882,131.044922),
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  	}
-  	var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
-
+  });
 });
