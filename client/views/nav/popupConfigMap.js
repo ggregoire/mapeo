@@ -4,23 +4,7 @@ Template.popupConfigMap.helpers({
 	}
 });
 
-Template.popupConfigMap.title = function () {
-	return this.title;
-};
-
-Template.popupConfigMap.description = function () {
-	return this.desc;
-};
-
 Meteor.startup(function () {
-
-	$(':radio').prettyCheckable({
-    	color: 'blue'
-  	});
-
-	$('#config').on('click', function () {
-		$('#popup-config-map').toggle();
-	});
 
 	var $userSearch = $('#user-search');
 

@@ -1,21 +1,12 @@
 <template name="pannel">
 	<div class="pannel well clearfix">
-		{{#with map}}
-			<div class="map-title">
-				<h1>
-					{{{title}}
-				</h1>
-			</div>
-			<div class="map-description">
-				{{{description}}}
-			</div>
-			<div class="map-comments">
-	    		{{#each comments}}
-					<div class="map-comment">
-						{{comment}}
-					</div>
-	    		{{/each}}
-			</div>
-		{{/with}}
+		<div class="map-title">
+			<h1>
+				{{map.title}}
+			</h1>
+		</div>
+		<div class="map-description">
+			{{map.desc}}
+		</div>
 	</div>
 </template>
