@@ -1,0 +1,9 @@
+.nav .input-append
+{
+	margin: 7px;
+}
+
+
+.typeahead.dropdown-menu{
+	z-index:99999;
+}

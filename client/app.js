@@ -1,10 +1,12 @@
 Meteor.startup(function () {
 
-	GLO_MAP = initiateMap();
+Meteor.startup(function () {
+  Meteor.autorun(function () {
+    if (! Session.get("selectedMap")) {
+      var map = Maps.findOne();
+      if (map)
+        Session.set("selectedMap", map._id);
+    }
 
-	//TODO gérer les droits
-  	initiateDrawing();
-
-  	Meteor.subscribe('users');
-
+  });
 });
