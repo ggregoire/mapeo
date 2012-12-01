@@ -1,3 +1,22 @@
 <template name="pannel">
-	{{> pannel-search-users}}
+	<div class="pannel well pull-right clearfix">
+		<div class="map-title">
+			<h1>
+				{{title}}
+			</h1>
+		</div>
+		<div class="map-description">
+			{{description}}
+		</div>
+		<div class="map-comments">
+    		{{#each comments}}
+				<div class="map-comment">
+					{{comment}}
+				</div>
+    		{{/each}}
+		</div>
+		<div class="map-users">
+			{{> pannel-search-users}}
+		</div>
+	</div>
 </template>
