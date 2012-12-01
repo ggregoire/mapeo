@@ -23,13 +23,21 @@ Meteor.startup(function () {
 	//TODO gérer les droits
   	initiateDrawing();
 
-  	Meteor.autosubscribe(function () {
+  	/*Meteor.autosubscribe(function () {
   		Meteor.subscribe("Map", {room: Session.get("current-room")});
-	});
+	});*/
 
   	//TODO gérer les maps création etc
   	Session.set("MapID", 0);
-  	Maps.insert({id: 0, name: "test"});
+  	
+  	// return array of my messages
+	var myMaps = Maps.find({userId: Session.get('myUserId')}).fetch();
+
+	// create a new message
+	Messages.insert({text: "Hello, world!"});
+
+	// mark my first message as "important"
+	Messages.update(myMessages[0].id, {$set: {important: true}});
 
 
   });
