@@ -18,7 +18,3 @@ Accounts.onCreateUser(function (options, user) {
 
 	return user;
 });
-
-Meteor.publish('users', function () {
-	return Meteor.users.find();
-});
