@@ -65,10 +65,10 @@ function initiateDrawing () {
 	google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
   	switch (event.type) {
   		case google.maps.drawing.OverlayType.MARKER:
-  			var newPoint = {latlng: event.overlay.getPosition(), title: 'test', image: event.overlay.getIcon()};
+  			var newPoint = point(event.overlay.getPosition(), 'test', event.overlay.getIcon());
   			Maps.update(Session.get("selectedMap"), {$push:{"points": newPoint}});
 			//TODO c'est un test
-  			displayPoint(Maps.findOne(Session.get("selectedMap")).points[1], true);
+  			displayPoint(newPoint, true);
   		break;
   		case google.maps.drawing.OverlayType.POLYGON:
 
@@ -90,13 +90,13 @@ function initiateDrawing () {
 
 function displayPoint (point, editable) {
 
-	console.log("point = " + point);
+	console.log(point);
   return google.maps.Marker({
       position: point.latlng,
       map: GLO_MAP,
       title: point.title,
-      draggable: editable,
-      image: point.image
+      draggable: editable
+      //image: point.image
   });
 }
 
