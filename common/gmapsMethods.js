@@ -51,10 +51,6 @@ function displayMap () {
 	});
 */
 
-
-}
-
-
 function initiateDrawing () {
 	var drawingManager = new google.maps.drawing.DrawingManager({
 	  drawingMode: null, //mode par défaut : drag
