@@ -1,8 +1,14 @@
-
-function initiateMap () {
+function reinitiateMap () {
 	Meteor.autorun( function() {
 		l('initiateMap');
 		var selectedMap = Session.get("selectedMap");
+		l(selectedMap);
+		initiateMap(selectedMap);
+		});
+}
+
+function initiateMap (selectedMap) {
+	l(selectedMap)
 	var currentMap = Maps.findOne(selectedMap);
 	console.log(currentMap);
 	var mapOptions = {
@@ -32,10 +38,9 @@ function initiateMap () {
   	GLO_MAP =  new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   	initiateDrawing();
   	l('on charge les points');
-  	currentMap.points.forEach(function(pt) {
+  	_.each(currentMap.points, function(pt) {
   		displayPoint(pt);
   	});
-  });
 }
 
 
