@@ -9,6 +9,7 @@ Meteor.startup(function () {
           	console.log(map);
           	console.log("donne le selectedMap");
           	console.log(Session.get("selectedMap"));
+          	initiateMap ();
           } else {
           	console.log("pas de carte");
           }
