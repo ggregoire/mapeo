@@ -18,6 +18,10 @@ Meteor.startup(function () {
 		tmpl: _.template('<li id="<%= id %>"><img src="<%= img %>" width="32" height="32" /><a href="#"><%= name %></a></li>')
 	});
 
+	GLO_MAP = initiateMap();
+
+	//TODO gérer les droits
+  	initiateDrawing();
 
 
   });

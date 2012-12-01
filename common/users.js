@@ -5,11 +5,13 @@ isGod = function (user) {
   return user ? user.isGod : false;
 }
 
-setGod = function (user) {
-	if (!user) {
-		return false;
+Meteor.methods({
+	setGod: function (user) {
+		if (!user) {
+			return false;
+		}
+
+		Meteor.users.update(user._id, { $addToSet: { isGod: true } });
+		return true;
 	}
-	
-	user.isGod = true;
-	return true;
-}
+});
