@@ -13,7 +13,7 @@ Template.mapCreation.events({
 		}
 	},
 	'click .btnCreateMap':function(){
-		Session.set('selectedMap', Maps.insert(map(($("input.newMapTitle").val(), null, [], [], [], [], false, false, [], Meteor.userId))));
+		Session.set('selectedMap', Maps.insert(map($("input.newMapTitle").val(), null, [], [], [], [], false, false, [], Meteor.userId, null, null, null, null)));
 	$("input.newMapTitle").val("");
 	$("#creationBox").hide();
 	}

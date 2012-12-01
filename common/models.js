@@ -20,7 +20,7 @@ function point (lat, lng, title, image) {
 	return pt;
 }
 
-function map (title, desc, points, lines, polygons, rectangles, visibility, edit, group, owner) {
+function map (title, desc, points, lines, polygons, rectangles, visibility, edit, group, owner, filter, zoom, centerLat, centerLng) {
 		if(title==null) {
 			title = "titre test";
 		}
@@ -51,7 +51,19 @@ function map (title, desc, points, lines, polygons, rectangles, visibility, edit
 		if(owner==null) {
 			owner = 0;
 		}
-		var mp = {title:title,desc:desc,points:points,lines:lines,polygons:polygons, rectangles:rectangles, visibility:visibility, edit:edit, group:group, owner:owner};
+		if(filter==null) {
+			filter = 0;
+		}
+		if(zoom==null) {
+			zoom = 4;
+		}
+		if(centerLat==null) {
+			lat = -25.363882; 
+		}
+		if(centerLng==null) {
+			lng = 131.044922;
+		}
+		var mp = {title:title,desc:desc,points:points,lines:lines,polygons:polygons, rectangles:rectangles, visibility:visibility, edit:edit, group:group, owner:owner, filter:filter, zoom:zoom, centerLat:centerLat, centerLng:centerLng};
 		console.log(mp);
 	return mp;
 }
