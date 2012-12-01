@@ -1,6 +1,4 @@
 Meteor.startup(function () {
-
-Meteor.startup(function () {
   Meteor.autorun(function () {
     if (! Session.get("selectedMap")) {
       var map = Maps.findOne();
