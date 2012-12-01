@@ -23,6 +23,14 @@ Meteor.startup(function () {
 	//TODO gérer les droits
   	initiateDrawing();
 
+  	Meteor.autosubscribe(function () {
+  		Meteor.subscribe("Map", {room: Session.get("current-room")});
+	});
+
+  	//TODO gérer les maps création etc
+  	Session.set("MapID", 0);
+  	Maps.insert({id: 0, name: "test"});
+
 
   });
 });

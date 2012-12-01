@@ -60,7 +60,9 @@ function initiateDrawing () {
 	google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
   	switch (event.type) {
   		case google.maps.drawing.OverlayType.MARKER:
-
+  			Maps.update(Maps[Session.get("MapID")].id, {point: {latlng: event.overlay.getPosition(), title: 'test', image: event.overlay.getIcon()}});
+			//TODO c'est un test
+  			displayPoint(Maps[Session.get("MapID")].point);
   		break;
   		case google.maps.drawing.OverlayType.POLYGON:
 
@@ -82,7 +84,7 @@ function initiateDrawing () {
 function displayPoint (point, editable) {
 
   return google.maps.Marker({
-      position: new google.maps.LatLng(point.lat,point.lng),
+      position: point.latlng,
       map: GLO_MAP,
       title: point.title,
       draggable: editable,
