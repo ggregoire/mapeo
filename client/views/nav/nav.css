@@ -7,3 +7,12 @@
 {
 	margin-bottom: 0px;
 }
+
+#popup-config-map {
+	max-width:350px;
+	position: absolute;
+	right:0;
+	top: 45px;
+	padding: 10px;
+	background: #fff;
+}
