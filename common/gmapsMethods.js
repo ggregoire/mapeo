@@ -10,8 +10,8 @@ function displayMap () {
 	var currentMap = Maps.findOne(Session.get("selectedMap"),{reactive:false});
 	var lol = Maps.findOne(Session.get("selectedMap"), {fields: {'points':1}});
 	var mapOptions = {
-	    zoom: 4,
-	    center: new google.maps.LatLng(-25.363882,131.044922),
+	    zoom: currentMap.zoom,
+	    center: new google.maps.LatLng(currentMap.centerLat,currentMap.centerLng),
 	    mapTypeId: google.maps.MapTypeId.ROADMAP,
 	    disableDefaultUI: true,
 	    mapTypeControl: true,
@@ -39,6 +39,8 @@ function displayMap () {
   	_.each(currentMap.points, function(pt) {
   		displayPoint(pt);
   	});
+  	applyFilter();
+}
 
 /*
 	Maps.findOne(Session.get("selectedMap"), {fields: {'points':1}}).observe({
