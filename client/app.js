@@ -10,13 +10,10 @@ Meteor.startup(function () {
 		tmpl: _.template('<li id="<%= id %>"><img src="<%= img %>" width="32" height="32" /><a href="#"><%= name %></a></li>')
 	});
 
+	GLO_MAP = initiateMap();
 
-	var mapOptions = {
-    zoom: 4,
-    center: new google.maps.LatLng(-25.363882,131.044922),
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  	}
-  	var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+	//TODO gérer les droits
+  	initiateDrawing();
 
 
 });
