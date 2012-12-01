@@ -1,0 +1,22 @@
+<template name="popupConfigMap">
+	<div id="popup-config-map" class="well hide">
+		{{#with map}}
+			<div class="input-append">
+				<input type="text" value="{{{title}}}">
+				<button class="btn" type="button">Ok !</button>
+			</div>
+			<div class="input-append">
+				<input type="text" value="{{{desc}}}">
+				<button class="btn" type="button">Ok !</button>
+			</div>
+		{{/with}}
+			<div>
+				<input type="radio" data-label="public" name="visibility" checked="checked" />
+				<input type="radio" data-label="private" name="visibility" />
+			</div>
+			<div class="input-append">
+				<input type="text" id="user-search" placeholder="Add a friend">
+				<button class="btn" type="button">Add</button>
+			</div>
+	</div>
+</template>
