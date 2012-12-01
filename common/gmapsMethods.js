@@ -25,7 +25,7 @@ function initiateMap (mapCol) {
   	}
   	var Gmap = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
-  	
+  	return Gmap;
 }
 
 
@@ -35,7 +35,7 @@ function initiateDrawing () {
 	  drawingMode: null, //mode par défaut : drag
 	  drawingControl: true, //affiche les controls
 	  drawingControlOptions: {
-	    position: google.maps.ControlPosition.BOTTOM,
+	    position: google.maps.ControlPosition.BOTTOM_CENTER,
 	    drawingModes: [
 	      google.maps.drawing.OverlayType.MARKER,
 	      google.maps.drawing.OverlayType.POLYGON,
