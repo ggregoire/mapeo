@@ -1,11 +1,16 @@
 <template name="nav">
 	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container-fluid">
-				<div class="auth-buttons">
-					{{loginButtons}}
-				</div>
-			</div>
-		</div>
-	</div>
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="#">Mapeo</a>
+            <p class="navbar-text pull-right">
+              {{loginButtons}}
+            </p>
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li >{{>searchMaps}}</li>
+            </ul>
+        </div>
+      </div>
+    </div>
 </template>

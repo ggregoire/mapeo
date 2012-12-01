@@ -1,9 +1,39 @@
-function initiateDrawing (argument) {
+function initiateMap () {
+	var mapOptions = {
+	    zoom: 4,
+	    center: new google.maps.LatLng(-25.363882,131.044922),
+	    mapTypeId: google.maps.MapTypeId.ROADMAP,
+	    disableDefaultUI: true,
+	    mapTypeControl: true,
+	    mapTypeControlOptions: {
+	        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+	        position: google.maps.ControlPosition.TOP_LEFT
+	    },
+	    panControl: true,
+	    panControlOptions: {
+	        position: google.maps.ControlPosition.LEFT_TOP
+	    },
+	    zoomControl: true,
+	    zoomControlOptions: {
+	        style: google.maps.ZoomControlStyle.SMALL,
+	        position: google.maps.ControlPosition.LEFT_TOP
+	    },
+	    scaleControl: true,
+	    scaleControlOptions: {
+	        position: google.maps.ControlPosition.RIGHT_BOTTOM
+	    }
+  	}
+  	return new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+}
+
+
+
+function initiateDrawing () {
 	var drawingManager = new google.maps.drawing.DrawingManager({
 	  drawingMode: null, //mode par défaut : drag
 	  drawingControl: true, //affiche les controls
 	  drawingControlOptions: {
-	    position: google.maps.ControlPosition.LEFT_TOP,
+	    position: google.maps.ControlPosition.BOTTOM,
 	    drawingModes: [
 	      google.maps.drawing.OverlayType.MARKER,
 	      google.maps.drawing.OverlayType.POLYGON,
@@ -24,7 +54,7 @@ function initiateDrawing (argument) {
 
 	  }
 	});
-	drawingManager.setMap(Session.get("Map"));
+	drawingManager.setMap(GLO_MAP);
 
 
 	google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
@@ -53,7 +83,7 @@ function displayPoint (point, editable) {
 
   return google.maps.Marker({
       position: new google.maps.LatLng(point.lat,point.lng),
-      map: Session.get("Map"),
+      map: GLO_MAP,
       title: point.title,
       draggable: editable,
       image: point.image
@@ -68,7 +98,7 @@ function displayLine (line, editable) {
 	    strokeWeight: line.weight,
 	    editable: editable
 	  });
-	  poly.setMap(Session.get("Map"));
+	  poly.setMap(GLO_MAP);
 	  return poly;
 }
 

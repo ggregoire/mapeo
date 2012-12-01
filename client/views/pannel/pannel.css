@@ -1,4 +1,6 @@
 .pannel{
-	margin-top:80px;
 	max-width:350px;
+	position: absolute;
+	top: 80px;
+	right: 20px;
 }

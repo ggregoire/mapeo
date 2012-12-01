@@ -1,0 +1,9 @@
+.login-link-and-dropdown-list.login-form-sign-in #login-dropdown-list {
+	left: auto;
+	right: -1px;
+}
+
+.navbar
+{
+	margin-bottom: 0px;
+}
