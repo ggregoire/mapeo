@@ -37,7 +37,7 @@ function displayMap (currentMap) {
   	GLO_MAP =  new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   	initiateDrawing();
 
-  	applyFilter();
+  	applyFilter(currentMap.filter);
 }
 
 function initiateDrawing () {
