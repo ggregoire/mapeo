@@ -1,5 +1,6 @@
 
 function initiateMap () {
+	var mapToReturn;
 	Meteor.autorun(function(){
 		var currentMap = Maps.findOne(Session.get("selectedMap"));
 		console.log(currentMap.name);
@@ -27,58 +28,61 @@ function initiateMap () {
 		        position: google.maps.ControlPosition.RIGHT_BOTTOM
 		    }
 	  	}
-	  	return new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+	  	mapToReturn =  new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 	});
+	return mapToReturn;
 }
 
 
 
 function initiateDrawing () {
-	var drawingManager = new google.maps.drawing.DrawingManager({
-	  drawingMode: null, //mode par défaut : drag
-	  drawingControl: true, //affiche les controls
-	  drawingControlOptions: {
-	    position: google.maps.ControlPosition.BOTTOM,
-	    drawingModes: [
-	      google.maps.drawing.OverlayType.MARKER,
-	      google.maps.drawing.OverlayType.POLYGON,
-	      google.maps.drawing.OverlayType.POLYLINE,
-	      google.maps.drawing.OverlayType.RECTANGLE
-	    ]
-	  },
-	  markerOptions: {
-	     draggable: true
-	  },
-	  polygonOptions: {
-	  	editable: true
-	  },
-	  polylineOptions: {
-	  	editable: true
-	  },
-	  rectangleOptions: {
-	  	editable: true
-	  }
-	});
-	drawingManager.setMap(GLO_MAP);
+	Meteor.autorun(function(){
+		var drawingManager = new google.maps.drawing.DrawingManager({
+		  drawingMode: null, //mode par défaut : drag
+		  drawingControl: true, //affiche les controls
+		  drawingControlOptions: {
+		    position: google.maps.ControlPosition.BOTTOM,
+		    drawingModes: [
+		      google.maps.drawing.OverlayType.MARKER,
+		      google.maps.drawing.OverlayType.POLYGON,
+		      google.maps.drawing.OverlayType.POLYLINE,
+		      google.maps.drawing.OverlayType.RECTANGLE
+		    ]
+		  },
+		  markerOptions: {
+		     draggable: true
+		  },
+		  polygonOptions: {
+		  	editable: true
+		  },
+		  polylineOptions: {
+		  	editable: true
+		  },
+		  rectangleOptions: {
+		  	editable: true
+		  }
+		});
+		drawingManager.setMap(GLO_MAP);
 
 
-	google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
-  	switch (event.type) {
-  		case google.maps.drawing.OverlayType.MARKER:
-  			Maps.update(Maps[Session.get("MapID")].id, {points: [{latlng: event.overlay.getPosition(), title: 'test', image: event.overlay.getIcon()}]});
-			//TODO c'est un test
-  			displayPoint(Maps[Session.get("MapID")].points[0], true);
-  		break;
-  		case google.maps.drawing.OverlayType.POLYGON:
+		google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
+	  	switch (event.type) {
+	  		case google.maps.drawing.OverlayType.MARKER:
+	  			Maps.update(Maps[Session.get("MapID")].id, {points: [{latlng: event.overlay.getPosition(), title: 'test', image: event.overlay.getIcon()}]});
+				//TODO c'est un test
+	  			displayPoint(Maps[Session.get("MapID")].points[0], true);
+	  		break;
+	  		case google.maps.drawing.OverlayType.POLYGON:
 
-  		break;
-  		case google.maps.drawing.OverlayType.POLYLINE:
+	  		break;
+	  		case google.maps.drawing.OverlayType.POLYLINE:
 
-  		break;
-  		case google.maps.drawing.OverlayType.RECTANGLE:
+	  		break;
+	  		case google.maps.drawing.OverlayType.RECTANGLE:
 
-  		break;
-  	} 
+	  		break;
+	  	} 
+  	})
 });
 }
 
