@@ -1,6 +1,7 @@
 
 function initiateMap () {
 	Meteor.autorun( function() {
+		l('initiateMap');
 		var selectedMap = Session.get("selectedMap");
 	var currentMap = Maps.findOne(selectedMap);
 	console.log(currentMap);
@@ -30,7 +31,7 @@ function initiateMap () {
   	}
   	GLO_MAP =  new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   	initiateDrawing();
-
+  	l('on charge les points');
   	currentMap.points.forEach(function(pt) {
   		displayPoint(pt);
   	});
@@ -75,7 +76,7 @@ function initiateDrawing () {
   			console.log(newPoint);
   			Maps.update(Session.get("selectedMap"), {$push:{"points": newPoint}});
 			//TODO c'est un test
-  			var pt = displayPoint(newPoint, true);
+  			//var pt = displayPoint(newPoint, true);
   		break;
   		case google.maps.drawing.OverlayType.POLYGON:
 
@@ -100,7 +101,7 @@ function displayPoint (point, editable) {
 	console.log(point);
   var gpt = new google.maps.Marker({
       position: new google.maps.LatLng(point.lat,point.lng),
-      //map: GLO_MAP,
+      map: GLO_MAP,
       title: point.title
       //draggable: editable
       //image: point.image
