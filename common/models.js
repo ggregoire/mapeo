@@ -58,10 +58,10 @@ function map (title, desc, points, lines, polygons, rectangles, visibility, edit
 			zoom = 4;
 		}
 		if(centerLat==null) {
-			lat = -25.363882; 
+			centerLat = -25.363882; 
 		}
 		if(centerLng==null) {
-			lng = 131.044922;
+			centerLng = 131.044922;
 		}
 		var mp = {title:title,desc:desc,points:points,lines:lines,polygons:polygons, rectangles:rectangles, visibility:visibility, edit:edit, group:group, owner:owner, filter:filter, zoom:zoom, centerLat:centerLat, centerLng:centerLng};
 		console.log(mp);

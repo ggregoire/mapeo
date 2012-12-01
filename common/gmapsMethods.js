@@ -2,18 +2,16 @@ function reinitiateMap () {
 	Meteor.autorun( function() {
 		l('initiateMap');
 		var selectedMap = Session.get("selectedMap");
-		l(selectedMap);
 		initiateMap(selectedMap);
 		});
 }
 
 function initiateMap (selectedMap) {
-	l(selectedMap)
 	var currentMap = Maps.findOne(selectedMap);
 	console.log(currentMap);
 	var mapOptions = {
-	    zoom: 4,
-	    center: new google.maps.LatLng(-25.363882,131.044922),
+	    zoom: currentMap.zoom,
+	    center: new google.maps.LatLng(currentMap.centerLat,currentMap.centerLng),
 	    mapTypeId: google.maps.MapTypeId.ROADMAP,
 	    disableDefaultUI: true,
 	    mapTypeControl: true,
@@ -41,6 +39,7 @@ function initiateMap (selectedMap) {
   	_.each(currentMap.points, function(pt) {
   		displayPoint(pt);
   	});
+  	applyFilter();
 }
 
 
@@ -103,7 +102,6 @@ function initiateDrawing () {
 
 function displayPoint (point, editable) {
 
-	console.log(point);
   var gpt = new google.maps.Marker({
       position: new google.maps.LatLng(point.lat,point.lng),
       map: GLO_MAP,
