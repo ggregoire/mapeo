@@ -72,11 +72,12 @@ function initiateDrawing () {
 	google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
 	  	switch (event.type) {
 	  		case google.maps.drawing.OverlayType.MARKER:
-	  			var newPoint = point(event.overlay.getPosition().$a,event.overlay.getPosition().ab, 'test', event.overlay.getIcon());
+	  			var isEditable = true;
+	  			var newPoint = point(event.overlay.getPosition().$a,event.overlay.getPosition().ab, 'test', event.overlay.getIcon(), isEditable);
 	  			console.log(newPoint);
-	  			Points.insert(newPoint);
-				//TODO c'est un test
-	  			//var pt = displayPoint(newPoint, true);
+	  			console.log("lol");
+	  			console.log(event);
+	  			var tempid = Points.insert(newPoint);
 	  		break;
 	  		case google.maps.drawing.OverlayType.POLYGON:
 
@@ -96,7 +97,7 @@ function displayPoints (){
 
 	var handle = Points.find({idMap:Session.get("selectedMap")}).observe({
 		added : function(pt,id){
-			displayPoint(pt);
+			displayPoint(pt, true);
 		},
 		removed:function(pt,id){
 			removePoint(pt);
@@ -109,14 +110,14 @@ function displayPoints (){
 
 
 function displayPoint (point, editable) {
-
   var gpt = new google.maps.Marker({
       position: new google.maps.LatLng(point.lat,point.lng),
       map: GLO_MAP,
-      title: point.title
-      //draggable: editable
+      title: point.title,
+      draggable: point.isEditable
       //image: point.image
   });
+  gpt.set("meteor_id",point.id);
   return gpt;
 }
 
