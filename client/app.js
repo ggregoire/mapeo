@@ -1,10 +1,10 @@
 
 Meteor.startup(function () {
   Meteor.autorun(function () {
-    if (! Session.get("selected")) {
+    if (! Session.get("selectedMap")) {
       var map = Maps.findOne();
       if (map)
-        Session.set("selected", map._id);
+        Session.set("selectedMap", map._id);
     }
 
 	var $userSearch = $('#user-search');
@@ -17,11 +17,6 @@ Meteor.startup(function () {
 		],
 		tmpl: _.template('<li id="<%= id %>"><img src="<%= img %>" width="32" height="32" /><a href="#"><%= name %></a></li>')
 	});
-
-	GLO_MAP = initiateMap();
-
-	//TODO gérer les droits
-  	initiateDrawing();
 
 
   });

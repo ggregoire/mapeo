@@ -11,10 +11,13 @@ Template.searchMaps.rendered = function(){
 	});
 };
 
-Template.searchMaps.events = 
-{
+Template.searchMaps.events ({
 	'click .btn' : function(){
 		var pmap = $("input#map-search").val();
-		a(pmap);
+		var newId = $(".typeahead.dropdown-menu li.active").attr("id");
+
+		if(pmap && newId!==Session.get("selectedMap")){
+			Session.set("selectedMap",newId);
+		}
 	}
-}
+});

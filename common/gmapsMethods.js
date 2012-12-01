@@ -1,29 +1,34 @@
+
 function initiateMap () {
-	var mapOptions = {
-	    zoom: 4,
-	    center: new google.maps.LatLng(-25.363882,131.044922),
-	    mapTypeId: google.maps.MapTypeId.ROADMAP,
-	    disableDefaultUI: true,
-	    mapTypeControl: true,
-	    mapTypeControlOptions: {
-	        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-	        position: google.maps.ControlPosition.TOP_LEFT
-	    },
-	    panControl: true,
-	    panControlOptions: {
-	        position: google.maps.ControlPosition.LEFT_TOP
-	    },
-	    zoomControl: true,
-	    zoomControlOptions: {
-	        style: google.maps.ZoomControlStyle.SMALL,
-	        position: google.maps.ControlPosition.LEFT_TOP
-	    },
-	    scaleControl: true,
-	    scaleControlOptions: {
-	        position: google.maps.ControlPosition.RIGHT_BOTTOM
-	    }
-  	}
-  	return new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+	Meteor.autorun(function(){
+		var currentMap = Maps.findOne(Session.get("selectedMap"));
+		console.log(currentMap.name);
+		var mapOptions = {
+		    zoom: 4,
+		    center: new google.maps.LatLng(-25.363882,131.044922),
+		    mapTypeId: google.maps.MapTypeId.ROADMAP,
+		    disableDefaultUI: true,
+		    mapTypeControl: true,
+		    mapTypeControlOptions: {
+		        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+		        position: google.maps.ControlPosition.TOP_LEFT
+		    },
+		    panControl: true,
+		    panControlOptions: {
+		        position: google.maps.ControlPosition.LEFT_TOP
+		    },
+		    zoomControl: true,
+		    zoomControlOptions: {
+		        style: google.maps.ZoomControlStyle.SMALL,
+		        position: google.maps.ControlPosition.LEFT_TOP
+		    },
+		    scaleControl: true,
+		    scaleControlOptions: {
+		        position: google.maps.ControlPosition.RIGHT_BOTTOM
+		    }
+	  	}
+	  	return new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+	});
 }
 
 
