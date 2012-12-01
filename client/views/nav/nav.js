@@ -3,3 +3,7 @@ Accounts.ui.config({
     facebook: ['user_photos']
   }
 });
+
+$('input').on('focus', function (e) {
+  e.stopPropagation();
+})
