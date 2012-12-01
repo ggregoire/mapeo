@@ -22,7 +22,5 @@ function applyFilter () {
   }
 ];
 
-map.setOptions({styles: styles});
-
 	GLO_MAP.setOptions({styles: styles});
 }
