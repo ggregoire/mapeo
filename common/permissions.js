@@ -17,9 +17,12 @@ Meteor.startup(function () {
 		},
 
 		update: function (userId, map) {
+			return true;
+			/*
 			return _.any(map.guest, function(guest){
 			    return guest.right ==="edit" ||guest.right ==="admin"||guest.userId===map.owner;
 			});
+			*/
 		},
 
 		remove: function (userId, map) {
