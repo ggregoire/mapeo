@@ -1,12 +1,13 @@
 Meteor.startup(function () {
 	var $userSearch = $('#user-search');
 
+	var users = Meteor.users.find().fetch();
+
+	l(users);
+
 	$userSearch.typeahead({
-		source: [
-			{ id: 1, name: 'Guillaume Grégoire', img: 'img/guillaume.jpeg' },
-			{ id: 2, name: 'Romain Vergnory', img: 'img/romain.jpeg' },
-			{ id: 3, name: 'Xavier Campenon', img: 'img/xavier.png' }
-		],
-		tmpl: _.template('<li id="<%= id %>"><img src="<%= img %>" width="32" height="32" /><a href="#"><%= name %></a></li>')
+		source: users,
+		tmpl: _.template('<li id="<%= _id %>"><img src="<%= profile.photo %>" width="32" height="32" /><a href="#"><%= profile.name %></a></li>')
 	});
+	
 });
