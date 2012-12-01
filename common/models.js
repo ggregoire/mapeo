@@ -55,10 +55,3 @@ function map (title, desc, points, lines, polygons, rectangles, visibility, edit
 		console.log(mp);
 	return mp;
 }
-
-Maps.find(Session.get("selectedMap"), {fields: ['points']}).observe({
-	added: function (point, index) {
-		displayPoint(point, true);
-	}
-});
-
