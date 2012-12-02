@@ -14,8 +14,8 @@ function applyFilter (num) {
 	break;
 	  case 2:
 		styles = filter2(); 
-		Session.set("textureUrl","/img/fond2.jpg");
-		Session.set("textureOpacity","1");
+		Session.set("textureUrl","/img/papier.jpg");
+		Session.set("textureOpacity","0.4");
 	 break;
 	 case 3 :
 		styles = filter3();
@@ -24,11 +24,8 @@ function applyFilter (num) {
 	 break;
 	 case 4 :
 		styles = filter4();
-		Session.set("textureUrl","/img/fond4.jpg");
-		Session.set("textureOpacity","1");
-	 break;
-	 default:
-	 	GLO_FILTER_DETAILS = {"imgUrl":""};
+		Session.set("textureUrl","/img/papier3.jpg");
+		Session.set("textureOpacity","0.4");
 	 break;
 	}	
 	GLO_MAP.setOptions({styles: styles});

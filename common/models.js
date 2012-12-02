@@ -84,7 +84,7 @@ function map (title, desc, points, lines, polygons, rectangles, visibility, edit
 			owner = 0;
 		}
 		if(filter==null) {
-			filter = 0;
+			filter = -1; //no filter
 		}
 		if(zoom==null) {
 			zoom = 4;

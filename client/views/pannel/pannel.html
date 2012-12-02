@@ -2,28 +2,29 @@
 	<div id="pannel" class="pannel well clearfix">
 
 		<div class="map-title">
-			<h1>
-  				{{#if showMap}}
-					{{map.title}}
-				{{else}}
-					{{point.title}}
-  				{{/if}}
-			</h1>
+			<h3>
+				{{map.title}}
+			</h3>
 		</div>
 		<div class="map-description">
-  			{{#if editMe}}
+		  {{#if hasPoint}}
+			  {{#if visualisation}}
 				{{inPlaceDescription}}
-			{{else}}
-				{{description}}
+			  {{else}}
+				<textarea class="pointDesc">{{inPlaceDescription}}</textarea>	
+  				<button class="btn btn-mini pointDescValid" type="button">Describe this point</button>
   			{{/if}}
+		  {{/if}}
 		</div>
 
 		<br>
-		<a href="#" class="btn btn-large" style="background-image:url(img/star.svg); background-position: 0px; padding: 12px 11px"></a>
-		<a href="#" class="btn btn-large" style="background-image:url(img/star.svg); background-position: 22px; padding: 12px 11px"></a>
-		<a href="#" class="btn btn-large" style="background-image:url(img/star.svg); background-position: 45px; padding: 12px 11px"></a>
-		<a href="#" class="btn btn-large" style="background-image:url(img/star.svg); background-position: 65px; padding: 12px 11px"></a>
-		<a href="#" class="btn btn-large" style="background-image:url(img/star.svg); background-position: 155px; padding: 12px 11px"></a>
-
+		<div class="iconsbtn map-icons">
+		<a href="#" class="btn btn-large" icon=0 style="background-image:url(img/star.svg); background-repeat: repeat; padding: 11px 11px; border-color: whitesmoke;"></a>
+		<a href="#" class="btn btn-large" icon=1 style="background-image:url(img/star.svg); background-repeat: repeat; padding: 11px 11px; border-color: whitesmoke;"></a>
+		<a href="#" class="btn btn-large" icon=2 style="background-image:url(img/star.svg); background-repeat: repeat; padding: 11px 11px; border-color: whitesmoke;"></a>
+		<a href="#" class="btn btn-large" icon=3 style="background-image:url(img/star.svg); background-repeat: repeat; padding: 11px 11px; border-color: whitesmoke;"></a>
+		<a href="#" class="btn btn-large" icon=4 style="background-image:url(img/star.svg); background-repeat: repeat; padding: 11px 11px; border-color: whitesmoke;"></a>
+		
+</div>
 	</div>
 </template>
