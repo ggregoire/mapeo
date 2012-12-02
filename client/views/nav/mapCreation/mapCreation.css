@@ -53,3 +53,12 @@ h2 {
 	height: 45px;
 	font-size: 20px;
 }
+
+.login-link-and-dropdown-list a {
+	color: #999 !important;
+	text-decoration: none !important
+}
+
+.navbar-text:hover > div > .login-link-and-dropdown-list:hover > a {
+	color: white !important;
+}
