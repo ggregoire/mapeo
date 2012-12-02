@@ -20,10 +20,10 @@ function point (lat, lng, title, image, isEditable) {
 		if(title==null) {
 			title = "titre test";
 		}
-		/*if(image==null) {
-			image = 'glyphicons-halflings.png';
-		}*/
-		var pt = {lat: lat, lng: lng, title:title, idMap:Session.get("selectedMap"), isEditable:isEditable};// , image: image};
+		if(image==null) {
+			image = 1;
+		}
+		var pt = {lat: lat, lng: lng, title:title, idMap:Session.get("selectedMap"), isEditable:isEditable , image: image};
 		console.log(pt);
 	return pt;
 }

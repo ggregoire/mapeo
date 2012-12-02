@@ -80,7 +80,7 @@ function initiateDrawing () {
 	  	switch (event.type) {
 	  		case google.maps.drawing.OverlayType.MARKER:
 	  			var isEditable = true;
-	  			var newPoint = point(event.overlay.getPosition().$a,event.overlay.getPosition().ab, '', event.overlay.getIcon(), isEditable);
+	  			var newPoint = point(event.overlay.getPosition().$a,event.overlay.getPosition().ab, '', null, isEditable);
 	  			Points.insert(newPoint);
 	  			event.overlay.setMap();
 	  		break;
@@ -129,12 +129,11 @@ function displayPoint (point, editable) {
 	      position: new google.maps.LatLng(point.lat,point.lng),
 	      map: GLO_MAP,
 	      title: point.title,
-	      draggable: point.isEditable
-	      //image: point.image
+	      draggable: point.isEditable,
+	      icon: new google.maps.MarkerImage('img/star.svg', google.maps.Size(22,22), google.maps.Point(22*point.image,22*GLO_MAP.filter),null, google.maps.Size(154,66))
 	  });
 	  gpt.set("meteor_id",point._id);
 	  GLO_MAP.markers.push(gpt);
-
 
 	  google.maps.event.addListener(gpt, 'position_changed', function(){
 	  	Points.update(Points.find({_id:gpt.meteor_id}), {lat: gpt.getPosition().$a, lng: gpt.getPosition().ab});
