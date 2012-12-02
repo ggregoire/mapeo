@@ -36,9 +36,17 @@ function displayMap (currentMap) {
   	}
   	GLO_MAP =  new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   	GLO_MAP.markers = [];
+  	GLO_MAP.lines = [];
   	initiateDrawing();
 
-  	applyFilter(currentMap.filter);
+}
+
+function applyMapFilter(){
+	var handle = Maps.find({idMap:Session.get("selectedMap")},{fields:{"filter":1}}).observe({
+		udpated:function(filter,id){
+  			applyFilter(currentMap.filter);
+		},
+	})
 }
 
 function initiateDrawing () {
@@ -74,18 +82,19 @@ function initiateDrawing () {
 	  	switch (event.type) {
 	  		case google.maps.drawing.OverlayType.MARKER:
 	  			var isEditable = true;
-	  			var newPoint = point(event.overlay.getPosition().$a,event.overlay.getPosition().ab, 'test', event.overlay.getIcon(), isEditable);
-	  			console.log(newPoint);
-	  			console.log("lol");
-	  			console.log(event);
-	  			var pointId = Points.insert(newPoint);
+	  			var newPoint = point(event.overlay.getPosition().$a,event.overlay.getPosition().ab, '', event.overlay.getIcon(), isEditable);
+	  			Points.insert(newPoint);
 	  			event.overlay.setMap();
 	  		break;
 	  		case google.maps.drawing.OverlayType.POLYGON:
-
+	  			
 	  		break;
 	  		case google.maps.drawing.OverlayType.POLYLINE:
-
+				var isEditable = true;
+	  			var newLine = line(event.overlay.getPath().getArray().map(function(linar){return [linar.$a,linar.ab]}),null,null,null, isEditable);
+	  			l(newLine);
+	  			Lines.insert(newLine);
+	  			event.overlay.setMap();
 	  		break;
 	  		case google.maps.drawing.OverlayType.RECTANGLE:
 
@@ -104,10 +113,12 @@ function displayPoints (){
 		removed:function(pt,id){
 			removePoint(pt);
 		},
-		udpated:function(pt,id){
+		changed:function(pt,id){
 			GLO_MAP.markers.forEach(function(mrk){
+				//if(!mrk.dragging && mrk.meteor_id == pt._id){
 				if(mrk.meteor_id == pt._id){
-					mrk.LatLng = new google.maps.LatLng(pt.lat, pt.lng);
+					mrk.setPosition(new google.maps.LatLng(pt.lat, pt.lng));
+					return;
 				}
 			});
 		},
@@ -129,18 +140,58 @@ function displayPoint (point, editable) {
 	  gpt.set("meteor_id",point._id);
 	  GLO_MAP.markers.push(gpt);
 
-
-	  google.maps.event.addListener(gpt, 'position_changed', function(){
-	  	Points.update(Points.find({_id:gpt.meteor_id}), {lat: gpt.getPosition().$a, lng: gpt.getPosition().ab});
-	  })
-
+	
+	google.maps.event.addListener(gpt, 'dragend', function(){
+	  	//gpt.dragging = false;
+	  	//displayPoints();
+	  	Points.update(gpt.meteor_id, {$set: {lat: gpt.getPosition().$a, lng: gpt.getPosition().ab}});
+	  });
+	  /*google.maps.event.addListener(gpt, 'position_changed', function(){
+	  	Points.update(gpt.meteor_id, {$set: {lat: gpt.getPosition().$a, lng: gpt.getPosition().ab}});
+	  });
+	google.maps.event.addListener(gpt, 'dragstart', function(){
+		GLO_POINT_HANDLE.stop();
+	  	gpt.dragging = true;
+	  });*/
 
 	  return gpt;
 }
 
 function removePoint(point){
-	a("removed Point ?")
+	GLO_MAP.markers.forEach(function(mrk){
+				//if(!mrk.dragging && mrk.meteor_id == pt._id){
+				if(mrk.meteor_id == pt._id){
+					mrk.setMap();
+					return;
+				}
+			});
 }
+
+
+
+function displayLines (){
+
+	var handle = Lines.find({idMap:Session.get("selectedMap")}).observe({
+		added : function(lin,id){
+			displayLine(lin, true);
+		},
+		removed:function(lin,id){
+			removeLine(lin);
+		},
+		changed:function(lin,id){
+			GLO_MAP.lines.forEach(function(pline){
+				if(pline.meteor_id == lin._id){
+					pline.setPath(lin.points);
+					return;
+				}
+			});
+		},
+	})
+
+
+}
+
+
 
 function displayLine (line, editable) {
 
@@ -159,7 +210,6 @@ function displayLine (line, editable) {
     }
 
     var polyline_options = {
-      map: GLO_MAP,
       path: path,
       strokeColor: line.strokeColor,
       strokeOpacity: line.strokeOpacity,
@@ -168,6 +218,27 @@ function displayLine (line, editable) {
       visible: true
     };
 
-    return new google.maps.Polyline(polyline_options);
+    var gline = new google.maps.Polyline(polyline_options);
+
+    	  gline.set("meteor_id",line._id);
+    	  line.setMap(GLO_MAP);
+	  GLO_MAP.lines.push(gline);
+
+	
+	google.maps.event.addListener(gline, 'mouseup', function(){
+	  	Lines.update(gline.meteor_id, {$set: {path: gline.getPath()}});
+	  });
+
+	  return gline;
 };
+
+function removeLine(line){
+	GLO_MAP.lines.forEach(function(plin){
+				if(plin.meteor_id == line._id){
+					plin.setMap();
+					return;
+				}
+			});
+}
+
 
