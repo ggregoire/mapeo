@@ -37,7 +37,6 @@ function displayMap (currentMap) {
   	GLO_MAP =  new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   	GLO_MAP.markers = [];
   	initiateDrawing();
-
 }
 
 function applyMapFilter(){
@@ -119,11 +118,7 @@ function displayPoints (){
 			});
 		},
 	})
-
-
 }
-
-
 
 function displayPoint (point, editable) {
 	  var gpt = new google.maps.Marker({
@@ -139,6 +134,9 @@ function displayPoint (point, editable) {
 
 	  google.maps.event.addListener(gpt, 'position_changed', function(){
 	  	Points.update(Points.find({_id:gpt.meteor_id}), {lat: gpt.getPosition().$a, lng: gpt.getPosition().ab});
+	  })
+	  google.maps.event.addListener(gpt, 'click', function(){
+	  	Session.set("selectedPoint",gpt.meteor_id);
 	  })
 
 

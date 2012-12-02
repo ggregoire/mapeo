@@ -15,6 +15,10 @@ function applyFilter (num) {
 		styles = filter2(); 
 		GLO_FILTER_DETAILS = {"imgUrl":"/img/papier.jpg"}
 	 break;
+	 case 3 :
+		styles = filter3();
+	 	GLO_FILTER_DETAILS = {"imgUrl":"/img/papier2.jpg"}
+	 break;
 	}	
 	GLO_MAP.setOptions({styles: styles});
 }
@@ -282,4 +286,57 @@ function filter2(){
 			]}
 	
 		];
+}
+function filter3(){
+	return [
+			{ featureType: "water",
+		    elementType: "geometry",
+		    stylers: [
+		      {color: "#e2e9e9"},
+			  {weight: "2"}
+		    ]}
+			,{ featureType: "all",
+		    elementType: "labels",
+		    stylers: [
+		      {visibility: "off"}
+		    ]}
+			,{ featureType: "road.arterial",
+		    elementType: "labels.text",
+		    stylers: [
+		      {visibility: "on"},
+			  {color : "51793b"}
+		    ]}
+			,{ featureType: "landscape.man_made",
+		    elementType: "geometry",
+		    stylers: [
+		      {color: "#fdeed3"}
+		    ]}
+			,{ featureType: "administrative",
+		    elementType: "geometry",
+		    stylers: [
+		      {color: "#fdeed3"}
+		    ]}
+			,{ featureType: "poi",
+		    elementType: "geometry",
+		    stylers: [
+		      {color: "#fdeed3"}
+		    ]}
+			,{ featureType: "road",
+		    elementType: "geometry",
+		    stylers: [
+		      {color: "#51793b"},
+			  {weight: "0.6"}
+		    ]}
+			,{ featureType: "road.local",
+		    elementType: "all",
+		    stylers: [
+		      {visibility: "off"}
+		    ]}
+			,{ featureType: "transit",
+		    elementType: "geometry",
+		    stylers: [
+		      {color: "#ea1a12"},
+			  {weight: "0,6"}
+		    ]}
+		  ];
 }
