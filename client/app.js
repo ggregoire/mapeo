@@ -41,6 +41,11 @@ Meteor.startup(function () {
 
 
 Template.filter.rendered = function(){
+	Meteor.autorun(function(){		
+		var txt = Session.get("textureUrl");
+		$(".filterTexture").css("background-image",txt);
+		console.log("j'ai changé la texture");
+	})
 	/*
 	if(!GLO_FILTER_DETAILS){
 		return "";

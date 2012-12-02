@@ -1,27 +1,26 @@
-var GLO_FILTER_DETAILS;
 
 function applyFilter (num) {
 	var styles;
 	switch(num){
 	case 0:
 		styles = filter0();
-		GLO_FILTER_DETAILS = {"imgUrl":"/img/papier2.jpg"}
+		Session.set("textureUrl","/img/papier2.jpg");
 	break;
 	case 1:
 		styles = filter1();
-		GLO_FILTER_DETAILS = {"imgUrl":"/img/papier.jpg"}
+		Session.set("textureUrl","/img/papier.jpg");
 	break;
 	  case 2:
 		styles = filter2(); 
-		GLO_FILTER_DETAILS = {"imgUrl":"/img/papier.jpg"}
+		Session.set("textureUrl","/img/papier2.jpg");
 	 break;
 	 case 3 :
 		styles = filter3();
-	 	GLO_FILTER_DETAILS = {"imgUrl":"/img/papier2.jpg"}
+		Session.set("textureUrl","/img/papier.jpg");
 	 break;
 	 case 4 :
 		styles = filter4();
-	 	GLO_FILTER_DETAILS = {"imgUrl":"/img/papier2.jpg"}
+		Session.set("textureUrl","/img/papier.jpg");
 	 break;
 	}	
 	GLO_MAP.setOptions({styles: styles});
