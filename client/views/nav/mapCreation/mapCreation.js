@@ -13,7 +13,20 @@ Template.mapCreation.events({
 		}
 	},
 	'click .btnCreateMap':function(){
-		Session.set('selectedMap', Maps.insert(map($("input.newMapTitle").val(), $("textarea.newMapDesc").val(), [], [], [], [], false, false, [], Meteor.userId, null, GLO_MAP.getZoom(), GLO_MAP.getBounds().getCenter().$a, GLO_MAP.getBounds().getCenter().ab)));
+		Session.set('selectedMap', Maps.insert(map($("input.newMapTitle").val(),
+												 $("textarea.newMapDesc").val(), 
+												 [], 
+												 [], 
+												 [],
+												 [],
+												 false, 
+												 false, 
+												 [], 
+												 Meteor.userId, 
+												 null, 
+												 GLO_MAP.getZoom(), 
+												 GLO_MAP.getBounds().getCenter().$a, 
+												 GLO_MAP.getBounds().getCenter().ab)));
 	$("input.newMapTitle").val("");
 	$("input.newMapDesc").val("");
 	$("#creationBox").hide();

@@ -107,6 +107,7 @@ function displayPoints (){
 
 	var handle = Points.find({idMap:Session.get("selectedMap")}).observe({
 		added : function(pt,id){
+			console.log("point ajouté");
 			displayPoint(pt, true);
 		},
 		removed:function(pt,id){

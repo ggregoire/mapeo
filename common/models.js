@@ -50,12 +50,15 @@ function line (path, strokeColor, strokeOpacity, strokeWeight, isEditable) {
 	return lin;
 }
 
-function map (title, desc, lines, polygons, rectangles, visibility, edit, group, owner, filter, zoom, centerLat, centerLng) {
+function map (title, desc, points, lines, polygons, rectangles, visibility, edit, group, owner, filter, zoom, centerLat, centerLng) {
 		if(title==null) {
 			title = "titre test";
 		}
 		if(desc==null) {
 			desc = "desc test";
+		}
+		if(points==null) {
+			points = [];
 		}
 		if(lines==null) {
 			lines = [];
@@ -90,7 +93,7 @@ function map (title, desc, lines, polygons, rectangles, visibility, edit, group,
 		if(centerLng==null) {
 			centerLng = 131.044922;
 		}
-		var mp = {title:title,desc:desc,lines:lines,polygons:polygons, rectangles:rectangles, visibility:visibility, edit:edit, group:group, owner:owner, filter:filter, zoom:zoom, centerLat:centerLat, centerLng:centerLng};
+		var mp = {title:title,desc:desc,points:points,lines:lines,polygons:polygons, rectangles:rectangles, visibility:visibility, edit:edit, group:group, owner:owner, filter:filter, zoom:zoom, centerLat:centerLat, centerLng:centerLng};
 		console.log(mp);
 	return mp;
 }

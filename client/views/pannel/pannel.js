@@ -4,7 +4,7 @@ Template.pannel.helpers({
 		return Maps.findOne(Session.get('selectedMap'));
 	},
 	point : function(){
-		return "lol";
+		return undefined
 		/*
 		if(showMap){
 			Points.findOne(Session.get("selectedPoint")).fetch();
@@ -16,7 +16,7 @@ Template.pannel.helpers({
 });
 
 Template.pannel.showMap = function(){
-	return Session.get("selectedPoint")!==undefined;
+	return Session.get("selectedPoint")===undefined;
 }
 Template.pannel.pointDesc = function(){
 	return "lol";
