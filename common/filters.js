@@ -25,7 +25,7 @@ function applyFilter (num) {
 	 case 4 :
 		styles = filter4();
 		Session.set("textureUrl","/img/papier3.jpg");
-		Session.set("textureOpacity","0.4");
+		Session.set("textureOpacity","0.25");
 	 break;
 	}	
 	GLO_MAP.setOptions({styles: styles});

@@ -11,6 +11,7 @@ Template.pannel.helpers({
 Template.pannel.showMap = function(){
 	return showMap;	
 };
+
 Template.pannel.edit = function(){
 	return Session.get("editMode")=="edit";	
 };
@@ -27,12 +28,17 @@ Template.pannel.inPlaceDescription=function(){
 
 };
 Template.pannel.visualisation = function(){
-	return Points.findOne(Session.get("selectedPoint")).desc;
+	return Points.findOne(Session.get("selectedPoint")).desc ;
 }
 Template.pannel.events({
 	'click .pointDescValid':function(){
 		var val = $(".pointDesc").val();
 		Points.update(Session.get("selectedPoint"),{$set:{desc:val}});
+		Session.set("isEditingDescription",false);
+	},
+	'click .isDescribing':function(){
+		Session.set("isEditingDescription",true);
+		console.log("lol");
 	}
 })
 

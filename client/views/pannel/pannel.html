@@ -12,7 +12,10 @@
 		<div class="map-description">
 		  {{#if hasPoint}}
 			  {{#if visualisation}}
-				{{inPlaceDescription}}
+			  	<div>
+					{{inPlaceDescription}}	
+	  				<!--<button class="btn btn-mini isDescribing" type="button">Edit description</button>-->
+	  			</div>
 			  {{else}}
 				<textarea class="pointDesc">{{inPlaceDescription}}</textarea>	
   				<button class="btn btn-mini pointDescValid" type="button">Describe this point</button>
