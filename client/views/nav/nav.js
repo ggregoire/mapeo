@@ -24,5 +24,11 @@ Template.nav.events({
 			source: usersForTypeahead,
 			tmpl: _.template('<li id="<%= id %>"><img src="<%= img %>" width="32" height="32" /><a href="#"><%= name %></a></li>')
 		});
+	},
+
+	'click #explore': function () {
+		var map = Maps.find(1).fetch();
+		l(map);
+		window.location.hash = '#' + map._id;
 	}
 });

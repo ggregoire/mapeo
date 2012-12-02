@@ -1,20 +1,8 @@
 
 Accounts.onCreateUser(function (options, user) {
-	user.profile = options.profile || {};
+	user.profile = {};
 
-	if (options.email) {
-    	user.profile.email = options.email;
-    }
-
-    if (!user.profile.name) {
-    	//user.profile.name = 'Xavier Campenon'
-    	//user.profile.photo = 'img/xavier.png'
-    }
-
-	// if this is the first user ever, make them a God
-	if (!Meteor.users.find().count()) {
-		//setGod(user);
-	}
+	user.profile.img = 'img/bob.jpg';
 
 	return user;
 });

@@ -46,3 +46,12 @@
 	-webkit-transition: all 0.5s; /* Safari and Chrome */
 	-o-transition: all 0.5s; /* Opera */
 }
+
+.brand i {
+	opacity: 0.5;
+	margin-top: 7px;
+}
+
+.brand:hover i {
+	opacity: 1;
+}
