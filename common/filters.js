@@ -1,17 +1,26 @@
+var GLO_FILTER_DETAILS;
+
 function applyFilter (num) {
 	var styles;
 	switch(num){
 	case 0:
-			styles = [
-			{ featureType: "water",
-		    elementType: "geometry",
-		    stylers: [
-		      {color: "#b7e2c5"}
-		    ]}			
-		  ];
-		break;
-		case 1:
-			styles = [
+		styles = filter0();
+		GLO_FILTER_DETAILS = {"imgUrl":"/img/papier2.jpg"}
+	break;
+	case 1:
+		styles = filter1();
+		GLO_FILTER_DETAILS = {"imgUrl":"/img/papier.jpg"}
+	break;
+	  case 2:
+		styles = filter2(); 
+		GLO_FILTER_DETAILS = {"imgUrl":"/img/papier.jpg"}
+	 break;
+	}	
+	GLO_MAP.setOptions({styles: styles});
+}
+
+function filter1(){
+			return [
 			{ featureType: "water",
 		    elementType: "geometry",
 		    stylers: [
@@ -110,9 +119,18 @@ function applyFilter (num) {
 		    ]}
 			,
 		  ];
-	  break;
-	  case 2:
-		styles = [
+}
+function filter0(){
+	return [
+			{ featureType: "water",
+		    elementType: "geometry",
+		    stylers: [
+		      {color: "#b7e2c5"}
+		    ]}			
+		  ];
+}
+function filter2(){
+	return [
 			{ featureType: "all",
 		    elementType: "geometry.fill",
 		    stylers: [
@@ -173,12 +191,6 @@ function applyFilter (num) {
 		    stylers: [
 		      {color: "#ecded1"},
 			]}
-
-
-
-		
+	
 		];
-	  break;
-	}	
-	GLO_MAP.setOptions({styles: styles});
 }

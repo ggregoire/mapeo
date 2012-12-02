@@ -39,7 +39,14 @@ function displayMap (currentMap) {
   	GLO_MAP.lines = [];
   	initiateDrawing();
 
-  	applyFilter(currentMap.filter);
+}
+
+function applyMapFilter(){
+	var handle = Maps.find({idMap:Session.get("selectedMap")},{fields:{"filter":1}}).observe({
+		udpated:function(filter,id){
+  			applyFilter(currentMap.filter);
+		},
+	})
 }
 
 function initiateDrawing () {
