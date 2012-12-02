@@ -1,5 +1,4 @@
 #chat {
-	height: 200px;
 	padding: 16px;
 	width: 216px;
 	max-width: 350px;
@@ -8,12 +7,28 @@
 	bottom: 0px;
 }
 
+#chat ul {
+	height: 200px;
+}
+
 #chat .input-append {
 	position: absolute;
-	bottom: 0;
+	bottom: 6px;
 	margin-left: 12px;
 }
 
 #container-chat {
 	position: relative;
+}
+
+i {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	opacity: 0.8;
+	cursor: pointer;
+}
+
+i:hover {
+	opacity: 1;
 }
