@@ -3,26 +3,33 @@ Template.pannel.helpers({
 	map: function () {
 		return Maps.findOne(Session.get('selectedMap'));
 	},
+	showMap :function(){
+		return Session.get("selectedPoint")==undefined;
+	},
 	point : function(){
-		return undefined
-		/*
-		if(showMap){
-			Points.findOne(Session.get("selectedPoint")).fetch();
+		if(!showMap){
+			return Points.findOne(Session.get("selectedPoint"));
 		}else{	
 			return undefined;
 		}
-		*/
 	}
 });
 
 Template.pannel.showMap = function(){
-	return Session.get("selectedPoint")===undefined;
+	return showMap;	
 }
-Template.pannel.pointDesc = function(){
-	return "lol";
-	/*if (point && point.desc){
+Template.pannel.edit = function(){
+	return Session.get("editMode")=="edit";	
+}
+Template.pannel.description = function(){
+	if (Session.get("selectedPoint")!=undefined && Points.findOne(Session.get("selectedPoint")).desc){
 		return point.desc;
-	}else{
-		return '<textarea class="pointDesc" placeholder="Point description here"></textarea>';
-	}*/
+	}
+		return map.desc;
+}
+
+Template.pannel.inPlaceDescription=function(){
+	return '<textarea class="pointDesc" placeholder="Point description here">'+val+'</textarea>';
+	
+
 }
