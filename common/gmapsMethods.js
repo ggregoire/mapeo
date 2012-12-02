@@ -52,7 +52,7 @@ function applyMapFilter(){
 }
 
 function initiateDrawing () {
-	var drawingManager = new google.maps.drawing.DrawingManager({
+	 GLO_MAP.drawingManager = new google.maps.drawing.DrawingManager({
 	  drawingMode: null, //mode par défaut : drag
 	  drawingControl: true, //affiche les controls
 	  drawingControlOptions: {
@@ -77,10 +77,10 @@ function initiateDrawing () {
 	  	editable: true
 	  }
 	});
-	drawingManager.setMap(GLO_MAP);
+	GLO_MAP.drawingManager.setMap(GLO_MAP);
 	Session.set("selectedIcon",0);
 
-	google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
+	google.maps.event.addListener(GLO_MAP.drawingManager, 'overlaycomplete', function(event) {
 	  	switch (event.type) {
 	  		case google.maps.drawing.OverlayType.MARKER:
 	  			var isEditable = true;

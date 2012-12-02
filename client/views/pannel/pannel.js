@@ -40,7 +40,8 @@ Template.pannel.events({
 Template.pannel.events({
 	'click .iconsbtn a':function(event){
 		l($(event.srcElement).attr('icon'));
-			Session.set('selectedIcon', parseInt($(event.srcElement).attr('icon')));
+		Session.set('selectedIcon', parseInt($(event.srcElement).attr('icon')));
+		GLO_MAP.drawingManager.setDrawingMode(google.maps.drawing.MARKER);
 	}
 });
 
