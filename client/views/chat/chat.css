@@ -9,6 +9,10 @@
 
 #chat ul {
 	height: 200px;
+	overflow: hidden;
+}
+#chat .closeMe{
+	display:none;
 }
 
 #chat .input-append {
