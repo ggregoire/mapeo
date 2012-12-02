@@ -31,5 +31,19 @@ Template.pannel.description = function(){
 Template.pannel.inPlaceDescription=function(){
 	return '<textarea class="pointDesc" placeholder="Point description here">'+val+'</textarea>';
 	
+}
 
+Template.pannel.events({
+	'click .iconsbtn a':function(event){
+		l($(event.srcElement).attr('icon'));
+			Session.set('selectedIcon', parseInt($(event.srcElement).attr('icon')));
+	}
+});
+
+
+Template.pannel.rendered = function () {
+$.each($('.iconsbtn a'), function (index, el) {
+	l('hop');
+	$(el).css('background-position', '-' + 22*index + 'px ' + '-' + 22*Maps.findOne(Session.get("selectedMap")).filter + 'px');
+});
 }
