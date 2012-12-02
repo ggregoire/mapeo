@@ -35,6 +35,7 @@ function displayMap (currentMap) {
 	    }
   	}
   	GLO_MAP =  new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+  	GLO_MAP.markers = [];
   	initiateDrawing();
 
   	applyFilter(currentMap.filter);
@@ -72,11 +73,13 @@ function initiateDrawing () {
 	google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
 	  	switch (event.type) {
 	  		case google.maps.drawing.OverlayType.MARKER:
-	  			var newPoint = point(event.overlay.getPosition().$a,event.overlay.getPosition().ab, 'test', event.overlay.getIcon());
+	  			var isEditable = true;
+	  			var newPoint = point(event.overlay.getPosition().$a,event.overlay.getPosition().ab, 'test', event.overlay.getIcon(), isEditable);
 	  			console.log(newPoint);
-	  			Points.insert(newPoint);
-				//TODO c'est un test
-	  			//var pt = displayPoint(newPoint, true);
+	  			console.log("lol");
+	  			console.log(event);
+	  			var pointId = Points.insert(newPoint);
+	  			event.overlay.setMap();
 	  		break;
 	  		case google.maps.drawing.OverlayType.POLYGON:
 
@@ -96,11 +99,18 @@ function displayPoints (){
 
 	var handle = Points.find({idMap:Session.get("selectedMap")}).observe({
 		added : function(pt,id){
-			displayPoint(pt);
+			displayPoint(pt, true);
 		},
 		removed:function(pt,id){
 			removePoint(pt);
-		}
+		},
+		udpated:function(pt,id){
+			GLO_MAP.markers.forEach(function(mrk){
+				if(mrk.meteor_id == pt._id){
+					mrk.LatLng = new google.maps.LatLng(pt.lat, pt.lng);
+				}
+			});
+		},
 	})
 
 
@@ -109,15 +119,23 @@ function displayPoints (){
 
 
 function displayPoint (point, editable) {
+	  var gpt = new google.maps.Marker({
+	      position: new google.maps.LatLng(point.lat,point.lng),
+	      map: GLO_MAP,
+	      title: point.title,
+	      draggable: point.isEditable
+	      //image: point.image
+	  });
+	  gpt.set("meteor_id",point._id);
+	  GLO_MAP.markers.push(gpt);
 
-  var gpt = new google.maps.Marker({
-      position: new google.maps.LatLng(point.lat,point.lng),
-      map: GLO_MAP,
-      title: point.title
-      //draggable: editable
-      //image: point.image
-  });
-  return gpt;
+
+	  google.maps.event.addListener(gpt, 'position_changed', function(){
+	  	Points.update(Points.find({_id:gpt.meteor_id}), {lat: gpt.getPosition().$a, lng: gpt.getPosition().ab});
+	  })
+
+
+	  return gpt;
 }
 
 function removePoint(point){

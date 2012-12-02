@@ -4,7 +4,7 @@ Filters = new Meteor.Collection("filters");
 
 Points = new Meteor.Collection("points");
 
-function point (lat, lng, title, image) {
+function point (lat, lng, title, image, isEditable) {
 		if(!Session.get("selectedMap")){
 			console.log("echec");
 			return "";
@@ -21,7 +21,7 @@ function point (lat, lng, title, image) {
 		/*if(image==null) {
 			image = 'glyphicons-halflings.png';
 		}*/
-		var pt = {lat: lat, lng: lng, title:title, idMap:Session.get("selectedMap")};// , image: image};
+		var pt = {lat: lat, lng: lng, title:title, idMap:Session.get("selectedMap"), isEditable:isEditable};// , image: image};
 		console.log(pt);
 	return pt;
 }
