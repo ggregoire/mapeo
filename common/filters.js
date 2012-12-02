@@ -1,16 +1,69 @@
 function applyFilter (num) {
 	var styles;
-	switch(num){
-	case 0:
+	switch(num){case 4:
 			styles = [
 			{ featureType: "water",
 		    elementType: "geometry",
 		    stylers: [
-		      {color: "#b7e2c5"}
-		    ]}			
+		      {color: "#e2e9e9"},
+			  {weight: "2"}
+		    ]}
 		  ];
 		break;
-		case 1:
+	case 3:
+			styles = [
+			{ featureType: "water",
+		    elementType: "geometry",
+		    stylers: [
+		      {color: "#e2e9e9"},
+			  {weight: "2"}
+		    ]}
+			,{ featureType: "all",
+		    elementType: "labels",
+		    stylers: [
+		      {visibility: "off"}
+		    ]}
+			,{ featureType: "road.arterial",
+		    elementType: "labels.text",
+		    stylers: [
+		      {visibility: "on"},
+			  {color : "51793b"}
+		    ]}
+			,{ featureType: "landscape.man_made",
+		    elementType: "geometry",
+		    stylers: [
+		      {color: "#fdeed3"}
+		    ]}
+			,{ featureType: "administrative",
+		    elementType: "geometry",
+		    stylers: [
+		      {color: "#fdeed3"}
+		    ]}
+			,{ featureType: "poi",
+		    elementType: "geometry",
+		    stylers: [
+		      {color: "#fdeed3"}
+		    ]}
+			,{ featureType: "road",
+		    elementType: "geometry",
+		    stylers: [
+		      {color: "#51793b"},
+			  {weight: "0.6"}
+		    ]}
+			,{ featureType: "road.local",
+		    elementType: "all",
+		    stylers: [
+		      {visibility: "off"}
+		    ]}
+			,{ featureType: "transit",
+		    elementType: "geometry",
+		    stylers: [
+		      {color: "#ea1a12"},
+			  {weight: "0,6"}
+		    ]}
+		  ];
+		break;
+		case 2:
 			styles = [
 			{ featureType: "water",
 		    elementType: "geometry",
@@ -111,7 +164,7 @@ function applyFilter (num) {
 			,
 		  ];
 	  break;
-	  case 2:
+	  case 1:
 		styles = [
 			{ featureType: "all",
 		    elementType: "geometry.fill",
