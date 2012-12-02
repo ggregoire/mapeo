@@ -144,11 +144,11 @@ function displayPoint (point, editable) {
 	  GLO_MAP.markers.push(gpt);
 
 	  google.maps.event.addListener(gpt, 'position_changed', function(){
-	  	Points.update(Points.find({_id:gpt.meteor_id}), {lat: gpt.getPosition().$a, lng: gpt.getPosition().ab});
-	  })
-	  google.maps.event.addListener(gpt, 'click', function(){
+	  	Points.update(gpt.meteor_id, {$set: {lat: gpt.getPosition().$a, lng: gpt.getPosition().ab}});
+	  });
+	  /*google.maps.event.addListener(gpt, 'mousedown', function(){
 	  	Session.set("selectedPoint",gpt.meteor_id);
-	  })
+	  });*/
 
 	
 	google.maps.event.addListener(gpt, 'dragend', function(){
