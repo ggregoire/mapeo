@@ -16,5 +16,12 @@
 			<input type="text" id="user-search" placeholder="Add a friend">
 			<input type="button" class="btn" value="Add" />
 		</div>
+		<div id="group">
+			<ul class="unstyled">
+				{{#each map.group}}
+					<li><img src="{{img}}" width="32" height="32" /> {{name}} <a href="#" class="btn btn-small pull-right" data-id="{{id}}"><i class="icon-remove"></i></a></li>
+				{{/each}}
+			</ul>
+		</div>
 	</div>
 </template>
