@@ -41,9 +41,9 @@ function displayMap (currentMap) {
 }
 
 function applyMapFilter(){
-	//Meteor.autorun(function(){
+	Meteor.autorun(function(){
 		applyFilter(Maps.findOne(Session.get("selectedMap")).filter);
-	//});
+	});
 	/*var handle = Maps.find({idMap:Session.get("selectedMap")},{fields:{"filter":1}}).observe({
 		udpated:function(filter,id){
   			applyFilter(Maps.findOne(Session.get("selectedMap")).filter);
