@@ -7,11 +7,11 @@ Template.popupConfigMap.helpers({
 Template.popupConfigMap.events({
 
 	'click #updateTitle :button': function () {
-		Maps.update(Session.get('selectedMap'), { $set: { title: $('#updateTitle > input').val() } });		
+		Maps.update(Session.get('selectedMap'), { $set: { title: $('#updateTitle input').val() } });		
 	},
 
 	'click #updateDesc :button': function () {
-		Maps.update(Session.get('selectedMap'), { $set: { desc: $('#updateDesc > input').val() } });
+		Maps.update(Session.get('selectedMap'), { $set: { desc: $('#updateDesc input').val() } });
 	},
 
 	'click #updateVisibility': function () {
@@ -19,7 +19,6 @@ Template.popupConfigMap.events({
 	},
 
 	'click #addUser :button': function () {
-		l('lol');
 		Maps.update(Session.get('selectedMap'), { $push: { group: {
 			id: $('.typeahead.dropdown-menu li.active').attr('id'),
 			name: $('.typeahead.dropdown-menu li.active > a').text(),
