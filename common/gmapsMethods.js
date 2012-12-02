@@ -38,7 +38,14 @@ function displayMap (currentMap) {
   	GLO_MAP.markers = [];
   	initiateDrawing();
 
-  	applyFilter(currentMap.filter);
+}
+
+function applyMapFilter(){
+	var handle = Maps.find({idMap:Session.get("selectedMap")},{fields:{"filter":1}}).observe({
+		udpated:function(filter,id){
+  			applyFilter(currentMap.filter);
+		},
+	})
 }
 
 function initiateDrawing () {

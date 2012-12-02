@@ -7,6 +7,7 @@ Meteor.startup(function () {
 	    Session.set("selectedMap", Maps.findOne()._id);
 	    allowRendering();
 	    displayPoints();
+	    applyMapFilter();
 	});
 });
 
@@ -39,3 +40,14 @@ Meteor.startup(function () {
 	});
 
 });
+
+
+Template.filter.texture = function(){
+	return "/img/papier2.jpg";
+	/*
+	if(!GLO_FILTER_DETAILS){
+		return "";
+	}
+	return GLO_FILTER_DETAILS.imgUrl;
+	*/
+}
