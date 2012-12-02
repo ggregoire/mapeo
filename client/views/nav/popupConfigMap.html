@@ -1,20 +1,32 @@
 <template name="popupConfigMap">
 	<div id="popup-config-map" class="well hide">
 		<div id="updateTitle" class="input-append">
+		<fieldset>
+			<label>Title :</label>
 			<input type="text" value="{{map.title}}">
 			<input type="button" class="btn" value="Ok !" />
+		</fieldset>
 		</div>
 		<div id="updateDesc" class="input-append">
+		<fieldset>
+			<label>Description :</label>
 			<input type="text" value="{{map.desc}}">
 			<input type="button" class="btn" value="Ok !" />
+		</fieldset>
 		</div>
 		<div id="updateVisibility">
+		<fieldset>
+			<label>Visibility :</label>
 			<input type="radio" data-label="public" name="visibility" value="true" {{#if map.visibility}} checked="checked" {{/if}} />
 			<input type="radio" data-label="private" name="visibility" value="false" {{#unless map.visibility}} checked="checked" {{/unless}} />
+		</fieldset>
 		</div>
-		<div id="addUser" class="input-append">
+		<div id="addUser" class="input-append" style="margin-top: -10px">
+		<fieldset>
+			<label>Share :</label>
 			<input type="text" id="user-search" placeholder="Add a friend">
 			<input type="button" class="btn" value="Add" />
+		</fieldset>
 		</div>
 		<div id="group">
 			<ul class="unstyled">
@@ -24,4 +36,5 @@
 			</ul>
 		</div>
 	</div>
+	<div id="overlay" style="opacity:0; display:none"></div>
 </template>

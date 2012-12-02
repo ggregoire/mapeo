@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Risque);
+
 #creationBox{
 	z-index:999999;
 	position:fixed;
@@ -16,8 +18,38 @@
 	max-width: 500px;
 	margin-right:auto;
 	margin-left:auto;
-	vertical-align: middle;	
+	vertical-align: middle;
+	background-image: url('/img/map.png');
+	width:560px;
+	height:360px;
+	padding: 70px 0 0 70px;
 }
 .newMapDesc{
 	max-width: 450px;
+}
+
+h2 {
+	color: white;
+	text-transform: uppercase;
+	text-shadow: 0 0 5px #282D2A;
+	font-family: sans-serif;
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.creationForm input,
+.creationForm textarea {
+	margin-top: 30px;
+	font-size: 20px;
+	padding: 8px 6px;
+
+	background-color: white;
+	border: 2px solid #282D2A;
+}
+
+.creationForm button {
+	margin-top: 30px !important;
+	margin-left: 0;
+	height: 45px;
+	font-size: 20px;
 }

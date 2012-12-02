@@ -1,6 +1,7 @@
 Template.nav.events({
 	'click #config': function () {
 		$('#popup-config-map').toggleClass('show');
+		$('#overlay').css('opacity', 1).toggle();
 
 		$(':radio').prettyCheckable({
 	    	color: 'blue'

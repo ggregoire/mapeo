@@ -2,8 +2,9 @@ Template.mapCreation.events({
 	'click .clickMe':function(){
 		var opavity = $("#creationBox").css("opacity");
 		$("#creationBox").css("opacity","0")
+						.css('margin-top', '-200px')
 						.toggle()
-						.css("opacity","1");
+						.css("opacity","1").css('margin-top', 'auto');
 	},
 	'keypress':function(){
 		if($("input.newMapTitle").val()!==""){
