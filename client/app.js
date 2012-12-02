@@ -8,10 +8,7 @@ Meteor.startup(function () {
 	    allowRendering();
 	    displayPoints();
 	    applyMapFilter();
-<<<<<<< HEAD
 	    displayLines();
-=======
->>>>>>> 72c1f1d25199a708cca4edc2fcea44353f39e795
 	});
 });
 
