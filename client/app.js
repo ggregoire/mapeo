@@ -7,6 +7,7 @@ Meteor.startup(function () {
 	    Session.set("selectedMap", Maps.findOne()._id);
 	    allowRendering();
 	    displayPoints();
+	    displayLines();
 	});
 });
 
