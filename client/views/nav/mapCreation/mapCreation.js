@@ -2,9 +2,10 @@ Template.mapCreation.events({
 	'click .clickMe':function(){
 		var opavity = $("#creationBox").css("opacity");
 		$("#creationBox").css("opacity","0")
-						.css('margin-top', '-200px')
+						
 						.toggle()
-						.css("opacity","1").css('margin-top', 'auto');
+						.css("opacity","1");
+						$('#pannel').toggle();
 	},
 	'keypress':function(){
 		if($("input.newMapTitle").val()!==""){
@@ -14,6 +15,7 @@ Template.mapCreation.events({
 		}
 	},
 	'click .btnCreateMap':function(){
+		$('#pannel').show();
 		Session.set('selectedMap', Maps.insert(map($("input.newMapTitle").val(),
 												 $("textarea.newMapDesc").val(), 
 												 [], 

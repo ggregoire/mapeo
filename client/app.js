@@ -39,6 +39,8 @@ Meteor.startup(function () {
 
 });
 
+Session.set('chat', [ {img: '/img/guillaume.jpeg', txt: 'salut!'}, {img: '/img/romain.jpeg', txt: 'yo'} ]);
+
 
 Template.filter.rendered = function(){
 	Meteor.autorun(function(){		

@@ -6,6 +6,8 @@ Points = new Meteor.Collection("points");
 
 Lines = new Meteor.Collection("lines");
 
+Msg = new Meteor.Collection("msg");
+
 function point (lat, lng, title, image, isEditable) {
 		if(!Session.get("selectedMap")){
 			console.log("echec");
