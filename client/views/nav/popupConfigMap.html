@@ -1,18 +1,18 @@
 <template name="popupConfigMap">
 	<div id="popup-config-map" class="well hide">
-		<div class="input-append">
+		<div id="updateTitle" class="input-append">
 			<input type="text" value="{{map.title}}">
 			<button class="btn" type="button">Ok !</button>
 		</div>
-		<div class="input-append">
+		<div id="updateDesc" class="input-append">
 			<input type="text" value="{{map.desc}}">
 			<button class="btn" type="button">Ok !</button>
 		</div>
-		<div>
-			<input type="radio" data-label="public" name="visibility" checked="checked" />
-			<input type="radio" data-label="private" name="visibility" />
+		<div id="updateVisibility">
+			<input type="radio" data-label="public" name="visibility" value="true" {{#if map.visibility}} checked="checked" {{/if}} />
+			<input type="radio" data-label="private" name="visibility" value="false" {{#unless map.visibility}} checked="checked" {{/unless}} />
 		</div>
-		<div class="input-append">
+		<div id="addUser" class="input-append">
 			<input type="text" id="user-search" placeholder="Add a friend">
 			<button class="btn" type="button">Add</button>
 		</div>
