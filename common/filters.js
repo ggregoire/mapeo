@@ -31,11 +31,6 @@ function filter1(){
 		      {color: "#b7e2c5"}
 		    ]}
 			,{ featureType: "water",
-		    elementType: "labels",
-		    stylers: [
-		      {color: "#b7e2c5"}
-		    ]}
-			,{ featureType: "water",
 		    elementType: "labels.text.fill",
 		    stylers: [
 		      {color: "#666666"}
