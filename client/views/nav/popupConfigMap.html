@@ -2,11 +2,11 @@
 	<div id="popup-config-map" class="well hide">
 		<div id="updateTitle" class="input-append">
 			<input type="text" value="{{map.title}}">
-			<button class="btn" type="button">Ok !</button>
+			<input type="button" class="btn" value="Ok !" />
 		</div>
 		<div id="updateDesc" class="input-append">
 			<input type="text" value="{{map.desc}}">
-			<button class="btn" type="button">Ok !</button>
+			<input type="button" class="btn" value="Ok !" />
 		</div>
 		<div id="updateVisibility">
 			<input type="radio" data-label="public" name="visibility" value="true" {{#if map.visibility}} checked="checked" {{/if}} />
@@ -14,7 +14,7 @@
 		</div>
 		<div id="addUser" class="input-append">
 			<input type="text" id="user-search" placeholder="Add a friend">
-			<button class="btn" type="button">Add</button>
+			<input type="button" class="btn" value="Add" />
 		</div>
 	</div>
 </template>
