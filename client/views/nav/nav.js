@@ -19,10 +19,6 @@ Template.nav.events({
 			});
 		});
 
-		$userSearch.on('click', function () {
-			l(usersForTypeahead);
-		});
-
 		$userSearch.typeahead({
 			source: usersForTypeahead,
 			tmpl: _.template('<li id="<%= id %>"><img src="<%= img %>" width="32" height="32" /><a href="#"><%= name %></a></li>')
