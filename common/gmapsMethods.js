@@ -41,11 +41,14 @@ function displayMap (currentMap) {
 }
 
 function applyMapFilter(){
-	var handle = Maps.find({idMap:Session.get("selectedMap")},{fields:{"filter":1}}).observe({
+	Meteor.autorun(function(){
+		applyFilter(Maps.findOne(Session.get("selectedMap")).filter);
+	});
+	/*var handle = Maps.find({idMap:Session.get("selectedMap")},{fields:{"filter":1}}).observe({
 		udpated:function(filter,id){
-  			applyFilter(currentMap.filter);
+  			applyFilter(Maps.findOne(Session.get("selectedMap")).filter);
 		},
-	})
+	})*/
 }
 
 function initiateDrawing () {
