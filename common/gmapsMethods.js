@@ -104,33 +104,41 @@ function initiateDrawing () {
 
 function displayPoints (){
 
-	var handle = Points.find({idMap:Session.get("selectedMap")}).observe({
-		added : function(pt,id){
-			console.log("point ajouté");
-			displayPoint(pt, true);
-		},
-		removed:function(pt,id){
-			removePoint(pt);
-		},
-		changed:function(pt,id){
-			GLO_MAP.markers.forEach(function(mrk){
-				//if(!mrk.dragging && mrk.meteor_id == pt._id){
-				if(mrk.meteor_id == pt._id){
-					mrk.setPosition(new google.maps.LatLng(pt.lat, pt.lng));
-					return;
-				}
-			});
-		},
-	})
+	Meteor.autorun(function(){
+		var handle = Points.find({idMap:Session.get("selectedMap")}).observe({
+			added : function(pt,id){
+				console.log("point ajouté");
+				displayPoint(pt, true);
+			},
+			removed:function(pt,id){
+				removePoint(pt);
+			},
+			changed:function(pt,id){
+				GLO_MAP.markers.forEach(function(mrk){
+					//if(!mrk.dragging && mrk.meteor_id == pt._id){
+					if(mrk.meteor_id == pt._id){
+						mrk.setPosition(new google.maps.LatLng(pt.lat, pt.lng));
+						return;
+					}
+				});
+			},
+		});
+	});
 }
 
 function displayPoint (point, editable) {
+	var size = new google.maps.Size(22, 22, "px", "px");
+
+	var origin = new google.maps.Point(22*point.image,22*GLO_MAP.filter);
+
+	var icon = new google.maps.MarkerImage("http://path/to/sprite.png", size, origin, null, null);
+
 	  var gpt = new google.maps.Marker({
 	      position: new google.maps.LatLng(point.lat,point.lng),
 	      map: GLO_MAP,
 	      title: point.title,
 	      draggable: point.isEditable,
-	      icon: new google.maps.MarkerImage('img/star.svg', google.maps.Size(22,22), google.maps.Point(22*point.image,22*GLO_MAP.filter),null, google.maps.Size(154,66))
+	      icon: new google.maps.MarkerImage('img/star.svg', size, origin,null, null)
 	  });
 	  gpt.set("meteor_id",point._id);
 	  GLO_MAP.markers.push(gpt);
