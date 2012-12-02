@@ -48,6 +48,7 @@ Template.pannel.events({
 Template.pannel.rendered = function () {
 $.each($('.iconsbtn a'), function (index, el) {
 	l('hop');
-	$(el).css('background-position', '-' + 22*index + 'px ' + '-' + 22*Maps.findOne(Session.get("selectedMap")).filter + 'px');
+	$(el).css('background-position', (-22)*index + 'px ' + (-22)*Maps.findOne(Session.get("selectedMap")).filter + 'px');
+
 });
 }

@@ -6,6 +6,8 @@ Points = new Meteor.Collection("points");
 
 Lines = new Meteor.Collection("lines");
 
+Msg = new Meteor.Collection("msg");
+
 function point (lat, lng, title, image, isEditable) {
 		if(!Session.get("selectedMap")){
 			console.log("echec");
@@ -82,7 +84,7 @@ function map (title, desc, points, lines, polygons, rectangles, visibility, edit
 			owner = 0;
 		}
 		if(filter==null) {
-			filter = 0;
+			filter = -1; //no filter
 		}
 		if(zoom==null) {
 			zoom = 4;

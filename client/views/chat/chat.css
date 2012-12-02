@@ -1,0 +1,14 @@
+#chat {
+	height: 200px;
+	padding: 16px;
+	width: 200px;
+	max-width: 350px;
+	position: absolute;
+	right: 20px;
+	bottom: 0px;
+}
+
+#chat .input-append {
+	position: absolute;
+	bottom: 0;
+}
