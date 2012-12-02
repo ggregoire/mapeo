@@ -17,6 +17,7 @@ Meteor.startup(function () {
 	var loadMap = function (id) {
 		if (Maps.findOne(id)) {
 			Session.set('selectedMap', id);
+			window.location.hash = '#' + Session.get('selectedMap');
 		}
 	};
 

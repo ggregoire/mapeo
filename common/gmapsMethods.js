@@ -76,7 +76,6 @@ function initiateDrawing () {
 	});
 	drawingManager.setMap(GLO_MAP);
 
-
 	google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
 	  	switch (event.type) {
 	  		case google.maps.drawing.OverlayType.MARKER:

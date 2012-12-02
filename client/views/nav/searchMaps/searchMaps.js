@@ -14,7 +14,10 @@ Template.searchMaps.events ({
 		var newId = $(".typeahead.dropdown-menu li.active").attr("id");
 
 		if(pmap && newId && newId!=Session.get("selectedMap") && newId!="map-search"){
-			Session.set("selectedMap",newId);
+			console.log("nouvelle Id" + newId);
+
+			window.location.hash = '#' + newId;
+			//Session.set("selectedMap",newId);
 		}
 	}
 	
