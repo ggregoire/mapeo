@@ -115,8 +115,8 @@ function displayPoints (){
 			},
 			changed:function(pt,id){
 				GLO_MAP.markers.forEach(function(mrk){
-					if(!mrk.dragging && mrk.meteor_id == pt._id){
-					//if(mrk.meteor_id == pt._id){
+					//if(!mrk.dragging && mrk.meteor_id == pt._id){
+					if(mrk.meteor_id == pt._id){
 						mrk.setPosition(new google.maps.LatLng(pt.lat, pt.lng));
 						return;
 					}
@@ -144,9 +144,9 @@ function displayPoint (point, editable) {
 	  GLO_MAP.markers.push(gpt);
 
 
-	  google.maps.event.addListener(gpt, 'position_changed', function(){
+	  /*google.maps.event.addListener(gpt, 'position_changed', function(){
 	  	Points.update(gpt.meteor_id, {$set: {lat: gpt.getPosition().$a, lng: gpt.getPosition().ab}});
-	  });
+	  });*/
 	  google.maps.event.addListener(gpt, 'mousedown', function(){
 	  	Session.set("selectedPoint",gpt.meteor_id);
 	  });
@@ -155,12 +155,11 @@ function displayPoint (point, editable) {
 	google.maps.event.addListener(gpt, 'dragend', function(){
 	  	gpt.dragging = false;
 	  	displayPoints();
-	  	//Points.update(gpt.meteor_id, {$set: {lat: gpt.getPosition().$a, lng: gpt.getPosition().ab}});
+	  	Points.update(gpt.meteor_id, {$set: {lat: gpt.getPosition().$a, lng: gpt.getPosition().ab}});
 	  });
-	google.maps.event.addListener(gpt, 'dragstart', function(){
-		GLO_POINT_HANDLE.stop();
+	/*google.maps.event.addListener(gpt, 'dragstart', function(){
 	  	gpt.dragging = true;
-	  });
+	  });*/
 
 	  return gpt;
 }
