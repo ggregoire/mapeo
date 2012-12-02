@@ -134,7 +134,11 @@ function displayPoints (){
 				displayPoint(pt, true);
 			},
 			removed:function(pt,id){
-				removePoint(pt);
+				if(pt){
+					console.log("pt : ");
+					console.log(pt);
+					removePoint(pt);
+				}
 			},
 			changed:function(pt,id){
 				GLO_MAP.markers.forEach(function(mrk){

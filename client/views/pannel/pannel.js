@@ -21,18 +21,18 @@ Template.pannel.inPlaceDescription=function(){
 
 	var cPoint = Session.get("selectedPoint")
 	if(cPoint){
-		return Points.find(cPoint).fetch().desc;
+		return Points.findOne(cPoint).desc;
 	}
 	return "no description yet...";
 
 };
 Template.pannel.visualisation = function(){
-	return false;
+	return Points.findOne(Session.get("selectedPoint")).desc;
 }
 Template.pannel.events({
 	'click .pointDescValid':function(){
 		var val = $(".pointDesc").val();
-		Points.update(Session.get("selectedPoint"),{desc :val});
+		Points.update(Session.get("selectedPoint"),{$set:{desc:val}});
 	}
 })
 
