@@ -4,6 +4,26 @@ Template.popupConfigMap.helpers({
 	}
 });
 
+Template.popupConfigMap.events({
+
+	'click #updateTitle > button': function () {
+		Maps.update(Session.get('selectedMap'), { $set: { title: $('#updateTitle > input').val() } });
+	},
+
+	'click #updateDesc > button': function () {
+		Maps.update(Session.get('selectedMap'), { $set: { desc: $('#updateDesc > input').val() } });
+	},
+
+	'click #updateVisibility': function () {
+		Maps.update(Session.get('selectedMap'), { $set: { visibility: $(':checked').val() === "true" } });
+	},
+
+	'click #addUser': function () {
+
+	}
+
+});
+
 Meteor.startup(function () {
 
 	var $userSearch = $('#user-search');
