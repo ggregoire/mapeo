@@ -1,8 +1,118 @@
 function applyFilter (num) {
 	var styles;
 	switch(num){
-		case 0:
+	case 0:
 			styles = [
+			{ featureType: "water",
+		    elementType: "geometry",
+		    stylers: [
+		      {color: "#b7e2c5"}
+		    ]}			
+		  ];
+		break;
+		case 1:
+			styles = [
+			{ featureType: "water",
+		    elementType: "geometry",
+		    stylers: [
+		      {color: "#b7e2c5"}
+		    ]}
+			,{ featureType: "water",
+		    elementType: "labels.text.fill",
+		    stylers: [
+		      {color: "#666666"}
+		    ]}
+			,{ featureType: "water",
+		    elementType: "labels.text.stroke",
+		    stylers: [
+		      {color: "#b7e2c5"}
+		    ]}
+			,{ featureType: "landscape.man_made",
+		    elementType: "all",
+		    stylers: [
+		      {visibility: "off"}
+		    ]}
+			,{ featureType: "landscape",
+		    elementType: "geometry",
+		    stylers: [
+		      {color :"#e5d887"}
+		    ]}
+			,{ featureType: "road",
+		    elementType: "labels",
+		    stylers: [
+		      {visibility: "off"}
+		    ]}
+			,{ featureType: "administrative",
+		    elementType: "labels",
+		    stylers: [
+		      {visibility: "off"}
+		    ]}
+			,{ featureType: "administrative",
+		    elementType: "geometry.stroke",
+		    stylers: [
+		      {color: "#b7b7ed"},
+			  {weight: "0.3"},
+		    ]}
+			,{ featureType: "administrative.country",
+		    elementType: "labels.text.fill",
+		    stylers: [
+		      {visibility: "on"},
+			  {color: "#777777"}
+		    ]}
+			,{ featureType: "administrative.locality",
+		    elementType: "labels.text.fill",
+		    stylers: [
+		      {visibility: "on"},
+			  {color: "#777777"}
+		    ]}
+			,{ featureType: "administrative.province",
+		    elementType: "labels.text.fill",
+		    stylers: [
+		      {visibility: "on"},
+			  {color: "#333333"}
+		    ]}
+			,{ featureType: "administrative.province",
+		    elementType: "labels.text.stroke",
+		    stylers: [
+		      {visibility: "on"},
+			  {color: "#e5d887"},
+			  {weight: "5"}
+		    ]}
+			,{ featureType: "administrative.neighborhood",
+		    elementType: "labels.text.fill",
+		    stylers: [
+		      {visibility: "on"},
+			  {color: "#333333"}
+		    ]}
+			,{ featureType: "administrative.neighborhood",
+		    elementType: "labels.text.stroke",
+		    stylers: [
+		      {visibility: "on"},
+			  {color: "#e5d887"},
+			  {weight: "5"}
+		    ]}
+			,{ featureType: "poi",
+		    elementType: "all",
+		    stylers: [
+		      {visibility: "off"}
+		    ]}
+			,{ featureType: "transit",
+		    elementType: "all",
+		    stylers: [
+		      {visibility: "off"}
+		    ]}
+			,{ featureType: "road",
+		    elementType: "all",
+		    stylers: [
+		      {color: "#1a1a1a"},
+			  {weight: "0.4"},
+			  {gamma: "2"}
+		    ]}
+			,
+		  ];
+	  break;
+	  case 2:
+		styles = [
 			{ featureType: "all",
 		    elementType: "geometry.fill",
 		    stylers: [
@@ -63,10 +173,6 @@ function applyFilter (num) {
 		    stylers: [
 		      {color: "#ecded1"},
 			]}
-		  ];
-	  break;
-	  case 1:
-		styles = [
 
 
 
