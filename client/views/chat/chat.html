@@ -1,5 +1,6 @@
 <template name="chat">
-	<div id="chat" class="well">
+	<div id="container-chat">
+		<div id="chat" class="well">
 		<ul class="unstyled">
 			{{#each msg}}
 				<li><img src="{{img}}" width="32" height="32" /> : {{txt}}</li>
@@ -9,5 +10,6 @@
 			<input type="text" class="span2">
 			<input type="button" class="btn" value="Add" />
 		</div>
+	</div>
 	</div>
 </template>
