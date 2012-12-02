@@ -1,24 +1,14 @@
+Template.searchMaps.events ({
 
-Template.searchMaps.rendered = function(){
-
-	  Meteor.autorun(function (handle) {
-
-	  	var curMaps = Maps.find().map(function(mp){return {_id: mp._id, title: mp.title}});
-	  	if(curMaps.length==0){
-	  		return;
-	  	}
-	    handle.stop();
-
-	    console.log(curMaps);
+	'click #map-search': function () {
+		var curMaps = Maps.find().map(function(mp){return {_id: mp._id, name: mp.title}});
 
 		$('#map-search').typeahead({
 			source: curMaps,
-			tmpl: _.template('<li id="<%= _id %>"><a href="#"><%= title %></a></li>')
+			tmpl: _.template('<li id="<%= _id %>"><a href="#"><%= name %></a></li>')
 		});	
-	});
-};
+	},
 
-Template.searchMaps.events ({
 	'click .btn' : function(){
 		var pmap = $("input#map-search").val();
 		var newId = $(".typeahead.dropdown-menu li.active").attr("id");
@@ -27,4 +17,5 @@ Template.searchMaps.events ({
 			Session.set("selectedMap",newId);
 		}
 	}
+	
 });
