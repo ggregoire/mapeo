@@ -52,6 +52,9 @@ function applyMapFilter(){
 }
 
 function initiateDrawing () {
+	if(GLO_MAP.drawingManager){
+	GLO_MAP.drawingManager.setMap();
+}
 	 GLO_MAP.drawingManager = new google.maps.drawing.DrawingManager({
 	  drawingMode: null, //mode par défaut : drag
 	  drawingControl: true, //affiche les controls
@@ -112,6 +115,12 @@ function displayPoints (){
 	Meteor.autorun(function(){
 		var handle = Points.find({idMap:Session.get("selectedMap")}).observe({
 			added : function(pt,id){
+				GLO_MAP.markers.forEach(function(mrk){
+					//if(!mrk.dragging && mrk.meteor_id == pt._id){
+					if(mrk.meteor_id == pt._id){
+						return;
+					}
+				});
 				console.log("point ajouté");
 				displayPoint(pt, true);
 			},

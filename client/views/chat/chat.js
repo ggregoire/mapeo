@@ -9,7 +9,7 @@ Template.chat.events({
 	},
 
 	'click i': function () {
-		$('#chat ul').toggle();
+		$('#chat ul').slideToggle();
 
 		if ($('#chat i').hasClass('icon-resize-small')) {
 			$('#chat i').removeClass().addClass('icon-resize-full');
