@@ -18,6 +18,7 @@ Template.pannel.hasPoint = function(){
 	return Session.get("selectedPoint");
 };
 Template.pannel.inPlaceDescription=function(){
+
 	var cPoint = Session.get("selectedPoint")
 	if(cPoint){
 		return Points.find(cPoint).fetch().desc;
@@ -34,3 +35,19 @@ Template.pannel.events({
 		Points.update(Session.get("selectedPoint"),{desc :val});
 	}
 })
+
+
+Template.pannel.events({
+	'click .iconsbtn a':function(event){
+		l($(event.srcElement).attr('icon'));
+			Session.set('selectedIcon', parseInt($(event.srcElement).attr('icon')));
+	}
+});
+
+
+Template.pannel.rendered = function () {
+$.each($('.iconsbtn a'), function (index, el) {
+	l('hop');
+	$(el).css('background-position', '-' + 22*index + 'px ' + '-' + 22*Maps.findOne(Session.get("selectedMap")).filter + 'px');
+});
+}
