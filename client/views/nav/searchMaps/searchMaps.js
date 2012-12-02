@@ -15,7 +15,7 @@ Template.searchMaps.events ({
 
 		if(pmap && newId && newId!=Session.get("selectedMap") && newId!="map-search"){
 			console.log("nouvelle Id" + newId);
-
+			Session.set("selectedPoint",undefined);
 			window.location.hash = '#' + newId;
 			//Session.set("selectedMap",newId);
 		}
