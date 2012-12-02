@@ -1,12 +1,21 @@
 <template name="pannel">
 	<div class="pannel well clearfix">
+
 		<div class="map-title">
 			<h1>
-				{{map.title}}
+  				{{#if showMap}}
+					{{map.title}}
+				{{else}}
+					{{point.title}}
+  				{{/if}}
 			</h1>
 		</div>
 		<div class="map-description">
-			{{map.desc}}
+	  		{{#if showMap}}
+				{{map.desc}}
+			{{else}}
+				{{pointDesc}}
+			{{/if}}
 		</div>
 	</div>
 </template>

@@ -39,8 +39,7 @@ Meteor.startup(function () {
 });
 
 
-Template.filter.texture = function(){
-	return "/img/papier2.jpg";
+Template.filter.rendered = function(){
 	/*
 	if(!GLO_FILTER_DETAILS){
 		return "";

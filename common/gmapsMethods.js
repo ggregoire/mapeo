@@ -38,7 +38,6 @@ function displayMap (currentMap) {
   	GLO_MAP.markers = [];
   	GLO_MAP.lines = [];
   	initiateDrawing();
-
 }
 
 function applyMapFilter(){
@@ -123,11 +122,7 @@ function displayPoints (){
 			});
 		},
 	})
-
-
 }
-
-
 
 function displayPoint (point, editable) {
 	  var gpt = new google.maps.Marker({
@@ -139,6 +134,14 @@ function displayPoint (point, editable) {
 	  });
 	  gpt.set("meteor_id",point._id);
 	  GLO_MAP.markers.push(gpt);
+
+
+	  google.maps.event.addListener(gpt, 'position_changed', function(){
+	  	Points.update(Points.find({_id:gpt.meteor_id}), {lat: gpt.getPosition().$a, lng: gpt.getPosition().ab});
+	  })
+	  google.maps.event.addListener(gpt, 'click', function(){
+	  	Session.set("selectedPoint",gpt.meteor_id);
+	  })
 
 	
 	google.maps.event.addListener(gpt, 'dragend', function(){
@@ -181,7 +184,11 @@ function displayLines (){
 		changed:function(lin,id){
 			GLO_MAP.lines.forEach(function(pline){
 				if(pline.meteor_id == lin._id){
-					pline.setPath(lin.points);
+					var path = [];
+					for (var i=0, latlng; latlng=lin.path[i]; i++){
+          				path.push(new google.maps.LatLng(latlng[0], latlng[1]));
+        			}
+					pline.setPath(path);
 					return;
 				}
 			});
@@ -196,7 +203,7 @@ function displayLines (){
 function displayLine (line, editable) {
 
     var path = [];
-    var points = line.points;
+    var points = line.path;
 
     if (points.length){
       if (points[0][0] === undefined){
@@ -221,12 +228,13 @@ function displayLine (line, editable) {
     var gline = new google.maps.Polyline(polyline_options);
 
     	  gline.set("meteor_id",line._id);
-    	  line.setMap(GLO_MAP);
+    	  gline.setMap(GLO_MAP);
 	  GLO_MAP.lines.push(gline);
 
 	
 	google.maps.event.addListener(gline, 'mouseup', function(){
-	  	Lines.update(gline.meteor_id, {$set: {path: gline.getPath()}});
+		l(gline.getPath().getArray().map(function(linar){return [linar.$a,linar.ab]}));
+	  	Lines.update(gline.meteor_id, {$set: {path: gline.getPath().getArray().map(function(linar){return [linar.$a,linar.ab]})}});
 	  });
 
 	  return gline;
