@@ -19,6 +19,10 @@ function applyFilter (num) {
 		styles = filter3();
 	 	GLO_FILTER_DETAILS = {"imgUrl":"/img/papier2.jpg"}
 	 break;
+	 case 4 :
+		styles = filter4();
+	 	GLO_FILTER_DETAILS = {"imgUrl":"/img/papier2.jpg"}
+	 break;
 	}	
 	GLO_MAP.setOptions({styles: styles});
 }
@@ -337,6 +341,27 @@ function filter3(){
 		    stylers: [
 		      {color: "#ea1a12"},
 			  {weight: "0,6"}
+		    ]}
+		  ];
+}
+function filter4(){
+			return [
+			{ featureType: "all",
+		    elementType: "all",
+		    stylers: [
+		      {visibility: "off"}
+		    ]}
+			,{ featureType: "all",
+		    elementType: "geometry",
+		    stylers: [
+		      {visibility : "on"},
+			  {color: "#d8c8af"}
+		    ]}
+			,{ featureType: "water",
+		    elementType: "geometry",
+		    stylers: [
+		      {color: "#e9e1d6"},
+			  {weight: "5"}
 		    ]}
 		  ];
 }
