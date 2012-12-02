@@ -14,12 +14,12 @@ function applyFilter (num) {
 	break;
 	  case 2:
 		styles = filter2(); 
-		Session.set("textureUrl","/img/fond2.jpg");
-		Session.set("textureOpacity","1");
+		Session.set("textureUrl","/img/papier3.jpg");
+		Session.set("textureOpacity","0.4");
 	 break;
 	 case 3 :
 		styles = filter3();
-		Session.set("textureUrl","/img/papier.jpg");
+		Session.set("textureUrl","/img/carton.jpg");
 		Session.set("textureOpacity","0.4");
 	 break;
 	 case 4 :
