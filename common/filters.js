@@ -22,6 +22,9 @@ function applyFilter (num) {
 		styles = filter4();
 		Session.set("textureUrl","/img/papier.jpg");
 	 break;
+	 default:
+	 	GLO_FILTER_DETAILS = {"imgUrl":""};
+	 break;
 	}	
 	GLO_MAP.setOptions({styles: styles});
 }
