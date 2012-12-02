@@ -5,22 +5,27 @@ function applyFilter (num) {
 	case 0:
 		styles = filter0();
 		Session.set("textureUrl","/img/papier2.jpg");
+		Session.set("textureOpacity","0.4");
 	break;
 	case 1:
 		styles = filter1();
 		Session.set("textureUrl","/img/papier.jpg");
+		Session.set("textureOpacity","0.4");
 	break;
 	  case 2:
 		styles = filter2(); 
-		Session.set("textureUrl","/img/papier2.jpg");
+		Session.set("textureUrl","/img/fond2.jpg");
+		Session.set("textureOpacity","1");
 	 break;
 	 case 3 :
 		styles = filter3();
 		Session.set("textureUrl","/img/papier.jpg");
+		Session.set("textureOpacity","0.4");
 	 break;
 	 case 4 :
 		styles = filter4();
-		Session.set("textureUrl","/img/papier.jpg");
+		Session.set("textureUrl","/img/fond4.jpg");
+		Session.set("textureOpacity","1");
 	 break;
 	}	
 	GLO_MAP.setOptions({styles: styles});
