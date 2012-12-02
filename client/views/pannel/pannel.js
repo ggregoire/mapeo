@@ -8,7 +8,7 @@ Template.pannel.helpers({
 	},
 	point : function(){
 		if(!showMap){
-			return Points.findOne(Session.get("selectedPoint")));
+			return Points.findOne(Session.get("selectedPoint"));
 		}else{	
 			return undefined;
 		}
@@ -18,11 +18,18 @@ Template.pannel.helpers({
 Template.pannel.showMap = function(){
 	return showMap;	
 }
-Template.pannel.pointDesc = function(){
-	var val="";
-	if (point && point.desc){
-		val = point.desc;
+Template.pannel.edit = function(){
+	return Session.get("editMode")=="edit";	
+}
+Template.pannel.description = function(){
+	if (Session.get("selectedPoint")!=undefined && Points.findOne(Session.get("selectedPoint")).desc){
+		return point.desc;
 	}
+		return map.desc;
+}
+
+Template.pannel.inPlaceDescription=function(){
 	return '<textarea class="pointDesc" placeholder="Point description here">'+val+'</textarea>';
 	
+
 }

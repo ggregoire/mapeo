@@ -22,7 +22,7 @@ Template.mapCreation.events({
 												 false, 
 												 false, 
 												 [], 
-												 Meteor.userId, 
+												 Meteor.userId(),
 												 null, 
 												 GLO_MAP.getZoom(), 
 												 GLO_MAP.getBounds().getCenter().$a, 

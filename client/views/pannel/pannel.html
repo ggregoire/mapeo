@@ -11,7 +11,11 @@
 			</h1>
 		</div>
 		<div class="map-description">
-			{{map.desc}}
+  			{{#if editMe}}
+				{{inPlaceDescription}}
+			{{else}}
+				{{description}}
+  			{{/if}}
 		</div>
 	</div>
 </template>

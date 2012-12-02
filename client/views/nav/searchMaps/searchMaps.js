@@ -1,12 +1,10 @@
 Template.searchMaps.events ({
 
 	'click #map-search': function () {
-		var curMaps = Maps.find().map(function(mp){return {_id: mp._id, name: mp.title}});
-
 		$('#map-search').typeahead({
-			source: curMaps,
+			source: myCurMaps(),
 			tmpl: _.template('<li id="<%= _id %>"><a href="#"><%= name %></a></li>')
-		});	
+		});
 	},
 
 	'click .btn' : function(){
@@ -22,3 +20,17 @@ Template.searchMaps.events ({
 	}
 	
 });
+
+function myCurMaps() {
+	var curMaps;
+	Meteor.autorun(function(){
+		if(this.userId){
+			curMaps = Maps.find(
+			{$or: [{visibility: true}, {group: this.userId}, {owner: this.userId}, {owner: "anonymous"}]}
+			).map(function(mp){return {_id: mp._id, name: mp.title}});
+		}else{
+			curMaps = Maps.find({visibility: true}, {owner: "anonymous"}).map(function(mp){return {_id: mp._id, name: mp.title}});
+		}
+	});
+	return curMaps;
+}
