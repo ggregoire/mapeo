@@ -8,7 +8,7 @@ Template.pannel.helpers({
 	},
 	point : function(){
 		if(!showMap){
-			return Points.findOne(Session.get("selectedPoint")));
+			return Points.findOne(Session.get("selectedPoint"));
 		}else{	
 			return undefined;
 		}

@@ -56,21 +56,21 @@ function initiateDrawing () {
 	    position: google.maps.ControlPosition.BOTTOM,
 	    drawingModes: [
 	      google.maps.drawing.OverlayType.MARKER,
-	      google.maps.drawing.OverlayType.POLYGON,
-	      google.maps.drawing.OverlayType.POLYLINE,
-	      google.maps.drawing.OverlayType.RECTANGLE
+	      //google.maps.drawing.OverlayType.POLYGON,
+	      //google.maps.drawing.OverlayType.RECTANGLE,
+	      google.maps.drawing.OverlayType.POLYLINE
 	    ]
 	  },
 	  markerOptions: {
 	     draggable: true
-	  },
+	  },/*
 	  polygonOptions: {
 	  	editable: true
 	  },
-	  polylineOptions: {
-	  	editable: true
-	  },
 	  rectangleOptions: {
+	  	editable: true
+	  },*/
+	  polylineOptions: {
 	  	editable: true
 	  }
 	});
@@ -84,9 +84,9 @@ function initiateDrawing () {
 	  			Points.insert(newPoint);
 	  			event.overlay.setMap();
 	  		break;
-	  		case google.maps.drawing.OverlayType.POLYGON:
+	  		/*case google.maps.drawing.OverlayType.POLYGON:
 	  			
-	  		break;
+	  		break;*/
 	  		case google.maps.drawing.OverlayType.POLYLINE:
 				var isEditable = true;
 	  			var newLine = line(event.overlay.getPath().getArray().map(function(linar){return [linar.$a,linar.ab]}),null,null,null, isEditable);
@@ -94,9 +94,9 @@ function initiateDrawing () {
 	  			Lines.insert(newLine);
 	  			event.overlay.setMap();
 	  		break;
-	  		case google.maps.drawing.OverlayType.RECTANGLE:
+	  		/*case google.maps.drawing.OverlayType.RECTANGLE:
 
-	  		break;
+	  		break;*/
 	  	} 
 	  	
 	});
