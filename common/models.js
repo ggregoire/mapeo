@@ -4,6 +4,8 @@ Filters = new Meteor.Collection("filters");
 
 Points = new Meteor.Collection("points");
 
+Lines = new Meteor.Collection("lines");
+
 function point (lat, lng, title, image, isEditable) {
 		if(!Session.get("selectedMap")){
 			console.log("echec");
@@ -24,6 +26,28 @@ function point (lat, lng, title, image, isEditable) {
 		var pt = {lat: lat, lng: lng, title:title, idMap:Session.get("selectedMap"), isEditable:isEditable};// , image: image};
 		console.log(pt);
 	return pt;
+}
+
+function line (path, strokeColor, strokeOpacity, strokeWeight, isEditable) {
+		if(!Session.get("selectedMap")){
+			console.log("echec");
+			return "";
+		}
+		if(path==null) {
+			path = [[-25.363882,131.044922],[48.86039473595898, 2.338371401855511]]; 
+		}
+		if(strokeColor==null) {
+			strokeColor = "#000000";
+		}
+		if(strokeOpacity==null) {
+			strokeOpacity = 1;
+		}
+		if(strokeWeight==null) {
+			strokeWeight = 3;
+		}
+		var lin = {path: path, strokeColor: strokeColor,strokeOpacity: strokeOpacity,strokeWeight: strokeWeight, isEditable: isEditable ,idMap:Session.get("selectedMap"),};
+		console.log(lin);
+	return lin;
 }
 
 function map (title, desc, lines, polygons, rectangles, visibility, edit, group, owner, filter, zoom, centerLat, centerLng) {
