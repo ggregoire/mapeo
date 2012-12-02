@@ -132,7 +132,7 @@ function displayPoints (){
 function displayPoint (point, editable) {
 	var size = new google.maps.Size(22, 22, "px", "px");
 
-	var origin = new google.maps.Point(22*point.image,22*GLO_MAP.filter);
+	var origin = new google.maps.Point(22*point.image,22*Maps.findOne(Session.get("selectedMap")).filter);
 
 	var icon = new google.maps.MarkerImage("http://path/to/sprite.png", size, origin, null, null);
 

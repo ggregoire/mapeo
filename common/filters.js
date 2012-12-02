@@ -27,6 +27,9 @@ function applyFilter (num) {
 		Session.set("textureUrl","/img/fond4.jpg");
 		Session.set("textureOpacity","1");
 	 break;
+	 default:
+	 	GLO_FILTER_DETAILS = {"imgUrl":""};
+	 break;
 	}	
 	GLO_MAP.setOptions({styles: styles});
 }
