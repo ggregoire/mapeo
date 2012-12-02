@@ -41,7 +41,7 @@ Template.pannel.events({
 	'click .iconsbtn a':function(event){
 		l($(event.srcElement).attr('icon'));
 		Session.set('selectedIcon', parseInt($(event.srcElement).attr('icon')));
-		GLO_MAP.drawingManager.setDrawingMode(google.maps.drawing.MARKER);
+		GLO_MAP.drawingManager.setDrawingMode(google.maps.drawing.OverlayType.MARKER);
 	}
 });
 
@@ -49,7 +49,7 @@ Template.pannel.events({
 Template.pannel.rendered = function () {
 $.each($('.iconsbtn a'), function (index, el) {
 	l('hop');
-	$(el).css('background-position', (-22)*index + 'px ' + (-22)*Maps.findOne(Session.get("selectedMap")).filter + 'px');
+	$(el).css('background-position', (-32)*index + 'px ' + (-32)*Maps.findOne(Session.get("selectedMap")).filter + 'px');
 
 });
 }
