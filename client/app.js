@@ -48,11 +48,5 @@ Template.filter.rendered = function(){
 		$(".filterTexture").css("background-image","url("+txt+")")
 							.css("opacity",Session.get("textureOpacity"));
 		console.log("j'ai changé la texture : " + txt);
-	})
-	/*
-	if(!GLO_FILTER_DETAILS){
-		return "";
-	}
-	return GLO_FILTER_DETAILS.imgUrl;
-	*/
-}
+	});
+};
